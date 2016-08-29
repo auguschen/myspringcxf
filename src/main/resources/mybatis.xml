@@ -108,11 +108,11 @@
         <property name="dataSource" ref="datasource"/>
         <!-- 下面configLocation这一句是myabtis的其它配置，比如字段值为null的时候，该字段就不返回了，在实际应用中，如果没有其它配置，可以删掉了-->
         <property name="configLocation" value="classpath:mybatis-configuration.xml"/>
-        <!--<property name="mapperLocations" value="classpath:mapper/*mapper.xml"/>-->
+        <!--<property name="mapperLocations" value="classpath:com/airchina/xn/mapper/*mapper.xml"/>-->
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-        <property name="basePackage" value="com.airchina.xn.mapper"/>
+        <property name="basePackage" value="com.airchina.xn.dao"/>
     </bean>
 </beans>
