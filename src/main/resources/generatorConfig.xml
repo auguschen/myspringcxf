@@ -7,8 +7,8 @@
     <javaModelGenerator targetPackage="com.airchina.xn.model" targetProject="myspringcxf" />
     <sqlMapGenerator targetPackage="com.airchina.xn.mapper" targetProject="myspringcxf" />
     <javaClientGenerator targetPackage="com.airchina.xn.dao" targetProject="myspringcxf" type="XMLMAPPER" />
-    <table schema="???" tableName="???">
-      <columnOverride column="???" property="???" />
+    <table schema="spring">
+      <!-- <columnOverride column="???" property="???" /> -->
     </table>
   </context>
 </generatorConfiguration>
