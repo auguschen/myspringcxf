@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airchina.xn.dao.LogsMapper">
+  <resultMap id="BaseResultMap" type="com.airchina.xn.model.Logs">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ObjectType" jdbcType="VARCHAR" property="objecttype" />
+    <result column="ObjectID" jdbcType="INTEGER" property="objectid" />
+    <result column="Operation" jdbcType="VARCHAR" property="operation" />
+    <result column="OperatorID" jdbcType="INTEGER" property="operatorid" />
+    <result column="OperationTime" jdbcType="TIMESTAMP" property="operationtime" />
+    <result column="OperationData" jdbcType="LONGVARCHAR" property="operationdata" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Logs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.airchina.xn.model.Logs">
+    insert into Logs (id, ObjectType, ObjectID, 
+      Operation, OperatorID, OperationTime, 
+      OperationData)
+    values (#{id,jdbcType=INTEGER}, #{objecttype,jdbcType=VARCHAR}, #{objectid,jdbcType=INTEGER}, 
+      #{operation,jdbcType=VARCHAR}, #{operatorid,jdbcType=INTEGER}, #{operationtime,jdbcType=TIMESTAMP}, 
+      #{operationdata,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Logs">
+    update Logs
+    set ObjectType = #{objecttype,jdbcType=VARCHAR},
+      ObjectID = #{objectid,jdbcType=INTEGER},
+      Operation = #{operation,jdbcType=VARCHAR},
+      OperatorID = #{operatorid,jdbcType=INTEGER},
+      OperationTime = #{operationtime,jdbcType=TIMESTAMP},
+      OperationData = #{operationdata,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, ObjectType, ObjectID, Operation, OperatorID, OperationTime, OperationData
+    from Logs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, ObjectType, ObjectID, Operation, OperatorID, OperationTime, OperationData
+    from Logs
+  </select>
+</mapper>

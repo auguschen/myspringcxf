@@ -6,8 +6,7 @@
 	<context-param> 
 		<param-name>contextConfigLocation</param-name> 
 		<param-value>
-		  classpath:cxf-servlets.xml
-		  ,classpath:spring-applicationContext.xml
+		  classpath:spring-applicationContext.xml
 		</param-value> 
 	</context-param>
 
@@ -54,10 +53,11 @@
 	</filter-mapping>
 
 	<!--this listener must be defined before the spring listener -->
+<!-- 	
 	<listener>
 		<listener-class>com.alibaba.dubbo.remoting.http.servlet.BootstrapListener</listener-class>
 	</listener>
-
+ -->
 	
 	<listener> 
 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
@@ -67,7 +67,7 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-
+<!-- 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet</servlet-class>
@@ -77,7 +77,7 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-
+ -->
 	<!-- 德鲁伊监控平台监控器 -->
 	<servlet>
 		<servlet-name>DruidStatView</servlet-name>

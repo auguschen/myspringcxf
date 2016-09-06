@@ -1,9 +1,11 @@
 package com.airchina.xn.rest.webservice;
 
-import com.airchina.xn.model.Order;
+import java.util.List;
+
+import com.airchina.xn.model.Aircraft;
 
 public interface ExampleTest {
 
-	public Order getOrder();
+	public List<Aircraft> listAllAircraft();
 	
 }
