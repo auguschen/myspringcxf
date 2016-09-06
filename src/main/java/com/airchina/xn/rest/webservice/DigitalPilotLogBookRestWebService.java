@@ -99,13 +99,10 @@ public interface DigitalPilotLogBookRestWebService {
 	 */	
 //	查询一个飞行员的执照等级记录信息
 	public List<Licensesratingsrecord> pilotlicenseratingsrecordbypilot(Pilot p);
-	
 //	新增一个飞行员的执照等级记录信息
 	public Boolean newpilotlicenseratingsrecord(Pilot p, List<Licensesratingsrecord> licenseratingsrecordList);
-	
 //	更新一个飞行员的执照等级记录信息
 	public Boolean updatepilotlicenseratingsrecord(Pilot p, List<Licensesratingsrecord> licenseratingsrecordList);
-
 //	删除一个飞行员的执照等级记录信息
 	public Boolean deletepilotlicenseratingsrecord(Pilot p, List<Licensesratingsrecord> licenseratingsrecordList);
 	
@@ -117,10 +114,8 @@ public interface DigitalPilotLogBookRestWebService {
 	
 //	查询一个飞行员的经验累计
 	public List<Summaryoflogbooks> summaryoflogbooksbypilot(Pilot p);
-	
 //	新增一个飞行员的经验累计
 	public Boolean newsummaryoflogbooks(Pilot p, List<Summaryoflogbooks> summaryoflogbooksList);
-	
 //	更新一个飞行员的经验累计
 	public Boolean updatesummaryoflogbooks(Pilot p, List<Summaryoflogbooks> summaryoflogbooksList);
 

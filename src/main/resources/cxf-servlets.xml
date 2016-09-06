@@ -30,12 +30,30 @@
 	    <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
 		</jaxrs:providers>  
 	</jaxrs:server>
-	
 
+  <jaxrs:server id="restDPLBWebService" address="/rest/dplb">  
+    <jaxrs:serviceBeans>  
+      <ref bean="DigitalPilotLogBookRestWebService" />  
+    </jaxrs:serviceBeans>  
+    <jaxrs:providers>  
+      <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
+    </jaxrs:providers>  
+  </jaxrs:server>
+
+  <jaxrs:server id="restDPLBServicesWebService" address="/rest/dplbservice">  
+    <jaxrs:serviceBeans>  
+      <ref bean="DPLBServicesRestWebService" />  
+    </jaxrs:serviceBeans>  
+    <jaxrs:providers>  
+      <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
+    </jaxrs:providers>  
+  </jaxrs:server>
+	
+<!-- 
 	<jaxrs:server id="restContainer" address="/rest/time">
 		<jaxrs:serviceBeans>
 			<ref bean="timeService" />
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
-
+ -->
  </beans> 
