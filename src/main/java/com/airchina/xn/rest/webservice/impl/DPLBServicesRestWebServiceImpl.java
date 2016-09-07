@@ -9,7 +9,7 @@ import com.airchina.xn.model.Logs;
 import com.airchina.xn.model.Parameters;
 import com.airchina.xn.rest.webservice.DPLBServicesRestWebService;
 
-@Service("DPLBServicesRestWebService")
+@Service("dplbServicesRestWebService")
 public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebService {
 
 	@Override
