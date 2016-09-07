@@ -13,4 +13,9 @@ public interface AircraftMapper {
     List<Aircraft> selectAll();
 
     int updateByPrimaryKey(Aircraft record);
+    
+    Aircraft selectByRegNo(String regno);
+
+	List<Aircraft> selectByType(String typecatalog, String typeafaircraft);
+    
 }

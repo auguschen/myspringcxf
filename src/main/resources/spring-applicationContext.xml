@@ -39,7 +39,9 @@
 			</list>
 		</property>
 	</bean>
-	
+
+<!-- 	
 	<import resource="classpath:mybatis.xml" />
 	<import resource="classpath:cxf-servlets.xml" />
+ -->	
 </beans>

@@ -30,4 +30,14 @@ public class AircraftServiceImpl implements AircraftService {
 		return aircraftmapper.selectAll();
 	}
 
+	@Override
+	public Aircraft getAircraftByRegNo(String regno) {		
+		return aircraftmapper.selectByRegNo(regno);
+	}
+
+	@Override
+	public List<Aircraft> getAircraftsByType(String typecatalog, String typeafaircraft) {
+		return aircraftmapper.selectByType(typecatalog, typeafaircraft);
+	}
+
 }

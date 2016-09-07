@@ -41,4 +41,20 @@
     Create_Time
     from Aircraft
   </select>
+  
+  <select id="selectByRegNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
+    Create_Time
+    from Aircraft
+    where Registered_Number = #{Registered_Number,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
+    Create_Time
+    from Aircraft
+    where Type_Catalog = #{Type_Catalog,jdbcType=VARCHAR} and Type_Of_Aircraft = #{Type_Of_Aircraft,jdbcType=VARCHAR}
+  </select>
+  
+  
 </mapper>

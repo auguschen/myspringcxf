@@ -7,6 +7,8 @@
 		<param-name>contextConfigLocation</param-name> 
 		<param-value>
 		  classpath:spring-applicationContext.xml
+		  ,classpath:mybatis.xml
+		  ,classpath:cxf-servlets.xml
 		</param-value> 
 	</context-param>
 
@@ -40,12 +42,16 @@
 			<param-name>profileEnable</param-name>
 			<param-value>true</param-value>
 		</init-param>
-		<!-- <init-param> <param-name>principalSessionName</param-name> <param-value>users.username</param-value> 
-			</init-param> -->
+		<init-param> 
+		  <param-name>principalSessionName</param-name> 
+		  <param-value>users.username</param-value> 
+		</init-param>
 
 		<!-- 你可以关闭session统计功能 -->
-		<!-- <init-param> <param-name>sessionStatEnable</param-name> <param-value>true</param-value> 
-			</init-param> -->
+		<init-param> 
+		  <param-name>sessionStatEnable</param-name> 
+		  <param-value>true</param-value> 
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>DruidWebStatFilter</filter-name>
@@ -79,6 +85,7 @@
 	</servlet-mapping>
  -->
 	<!-- 德鲁伊监控平台监控器 -->
+	
 	<servlet>
 		<servlet-name>DruidStatView</servlet-name>
 		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
