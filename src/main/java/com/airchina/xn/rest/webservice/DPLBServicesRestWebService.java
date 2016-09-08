@@ -12,8 +12,11 @@ public interface DPLBServicesRestWebService {
 	public Aircraft getAircraftByRegNo(String regno);
 //	根据飞机型别机型查询航空器
 	public List<Aircraft> getAircraftByType(String typecatalog, String typeafaircraft);
+//	查询所有航空器
+	public List<Aircraft> getAllAircraft();
 //	新增一个航空器
 	public Boolean newAircraft(Aircraft ac);
+	public Aircraft newAircraftRetAircraft(Aircraft ac);
 //	更新一个航空器
 	public Boolean updateAircraft(Aircraft ac);
 //	删除一个航空器

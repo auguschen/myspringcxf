@@ -10,6 +10,10 @@ public interface AircraftService {
 	
 	public Aircraft getAircraftByRegNo(String regno);
 
-	public List<Aircraft> getAircraftsByType(String typecatalog, String typeafaircraft);
+	public List<Aircraft> getAircraftByType(String typecatalog, String typeafaircraft);
+
+	public Boolean newAircraft(Aircraft ac);
+
+	public Aircraft newAircraftRetAircraft(Aircraft ac);
 	
 }

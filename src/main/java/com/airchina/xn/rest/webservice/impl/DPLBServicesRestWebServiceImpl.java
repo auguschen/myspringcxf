@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -50,11 +51,28 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@GET
-	@Path("/ac/get/{tc},{ta}")
+	@Path("/ac/get/{Type_Catalog},{Type_Of_Aircraft}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Aircraft> getAircraftByType(String typecatalog, String typeafaircraft) {
-		List<Aircraft> acList = aircraftservice.getAircraftsByType(typecatalog, typeafaircraft);
+	public List<Aircraft> getAircraftByType(@PathParam("Type_Catalog") String typecatalog, @PathParam("Type_Of_Aircraft") String typeafaircraft) {
+		List<Aircraft> acList = aircraftservice.getAircraftByType(typecatalog, typeafaircraft);
 		return acList!=null?acList:new ArrayList<Aircraft>();
+	}
+
+	@Override
+	@GET
+	@Path("/ac/get")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Aircraft> getAllAircraft() {
+		return aircraftservice.getAllAircraft();
+	}
+
+	@Override
+	@POST
+	@Path("/ac/newac")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
+	public Aircraft newAircraftRetAircraft(Aircraft ac) {
+		return aircraftservice.newAircraftRetAircraft(ac);
 	}
 
 	@Override
@@ -63,16 +81,24 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
 	public Boolean newAircraft(Aircraft ac) {
-		return null;
+		return aircraftservice.newAircraft(ac);
 	}
 
 	@Override
+	@PUT
+	@Path("/ac/update")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
 	public Boolean updateAircraft(Aircraft ac) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@DELETE
+	@Path("/ac/delete")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
 	public Boolean deleteAircraft(Aircraft ac) {
 		// TODO Auto-generated method stub
 		return null;

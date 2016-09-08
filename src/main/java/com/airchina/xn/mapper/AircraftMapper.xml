@@ -21,6 +21,14 @@
       #{aircraftDescription,jdbcType=VARCHAR}, #{registeredNumber,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
+  
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Aircraft">
+    insert into Aircraft (Type_Catalog, Type_Of_Aircraft, 
+      Aircraft_Description, Registered_Number)
+    values (#{typeCatalog,jdbcType=VARCHAR}, #{typeOfAircraft,jdbcType=VARCHAR}, 
+      #{aircraftDescription,jdbcType=VARCHAR}, #{registeredNumber,jdbcType=VARCHAR})
+  </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Aircraft">
     update Aircraft
     set Type_Catalog = #{typeCatalog,jdbcType=VARCHAR},
@@ -46,10 +54,10 @@
     select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
     Create_Time
     from Aircraft
-    where Registered_Number = #{Registered_Number,jdbcType=VARCHAR}
+    where Registered_Number = #{registeredNumber,jdbcType=VARCHAR}
   </select>
   
-  <select id="selectByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByType" parameterType="map" resultMap="BaseResultMap">
     select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
     Create_Time
     from Aircraft

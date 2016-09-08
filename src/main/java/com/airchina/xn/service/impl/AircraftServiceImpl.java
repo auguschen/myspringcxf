@@ -36,8 +36,31 @@ public class AircraftServiceImpl implements AircraftService {
 	}
 
 	@Override
-	public List<Aircraft> getAircraftsByType(String typecatalog, String typeafaircraft) {
+	public List<Aircraft> getAircraftByType(String typecatalog, String typeafaircraft) {
+		System.out.println("service-----------------------------------");
+		System.out.println(typecatalog);
+		System.out.println(typeafaircraft);
+		System.out.println("-----------------------------------");
+
 		return aircraftmapper.selectByType(typecatalog, typeafaircraft);
+	}
+
+	@Override
+	public Boolean newAircraft(Aircraft ac) {
+		Integer r_id = aircraftmapper.insertWithoutID(ac);
+		System.out.println("service-----------------------------------");
+		System.out.println(r_id);
+		System.out.println("-----------------------------------");
+		return r_id>0?true:false;
+	}
+
+	@Override
+	public Aircraft newAircraftRetAircraft(Aircraft ac) {
+		Integer r_id = aircraftmapper.insertWithoutID(ac);
+		if (r_id > 0) { 
+			// get saved Aircraft object, then return to upstream.
+		}
+		return null;
 	}
 
 }
