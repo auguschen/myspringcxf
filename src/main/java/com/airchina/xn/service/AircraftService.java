@@ -12,8 +12,9 @@ public interface AircraftService {
 
 	public List<Aircraft> getAircraftByType(String typecatalog, String typeafaircraft);
 
-	public Boolean newAircraft(Aircraft ac);
+	public Aircraft newAircraft(Aircraft ac);
 
-	public Aircraft newAircraftRetAircraft(Aircraft ac);
+	public Aircraft updateAircraft(Aircraft ac);
 	
+	public Boolean deleteAircraft(Aircraft ac);
 }

@@ -13,4 +13,9 @@ public interface ParametersMapper {
     List<Parameters> selectAll();
 
     int updateByPrimaryKey(Parameters record);
+    
+    List<Parameters> selectByType(String parameterType);
+    
+    List<Parameters> selectByName(String parameterName);
+
 }

@@ -22,7 +22,7 @@
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   
-  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Aircraft">
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Aircraft" useGeneratedKeys="true" keyProperty="id">
     insert into Aircraft (Type_Catalog, Type_Of_Aircraft, 
       Aircraft_Description, Registered_Number)
     values (#{typeCatalog,jdbcType=VARCHAR}, #{typeOfAircraft,jdbcType=VARCHAR}, 

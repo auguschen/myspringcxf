@@ -15,10 +15,9 @@ public interface DPLBServicesRestWebService {
 //	查询所有航空器
 	public List<Aircraft> getAllAircraft();
 //	新增一个航空器
-	public Boolean newAircraft(Aircraft ac);
-	public Aircraft newAircraftRetAircraft(Aircraft ac);
+	public Aircraft newAircraft(Aircraft ac);
 //	更新一个航空器
-	public Boolean updateAircraft(Aircraft ac);
+	public Aircraft updateAircraft(Aircraft ac);
 //	删除一个航空器
 	public Boolean deleteAircraft(Aircraft ac);
 	
@@ -29,12 +28,16 @@ public interface DPLBServicesRestWebService {
 	
 	
 //	新增一条参数信息
-	public Boolean newParameter(Parameters p);
+	public Parameters newParameter(Parameters p);
 //	修改一条参数信息
-	public Boolean updateParameter(Parameters p);
+	public Parameters updateParameter(Parameters p);
 //	删除一条参数信息
 	public Boolean deleteParameter(Parameters p);
-//	获取参数信息
-	public List<Parameters> getParameters(Parameters p);
+//	获取所有参数信息
+	public List<Parameters> getParameters();
+//	获取某一类型的参数信息
+	public List<Parameters> getParametersByType(String parameterType);
+//	获取某个名称的参数信息
+	public List<Parameters> getParametersByName(String parameterName);
 	
 }

@@ -18,6 +18,14 @@
     values (#{id,jdbcType=INTEGER}, #{parametertype,jdbcType=VARCHAR}, #{parametername,jdbcType=VARCHAR}, 
       #{parametervalue,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
+
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Parameters">
+    insert into Parameters (ParameterType, ParameterName, 
+      ParameterValue)
+    values (#{parametertype,jdbcType=VARCHAR}, #{parametername,jdbcType=VARCHAR}, 
+      #{parametervalue,jdbcType=VARCHAR})
+  </insert>
+
   <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Parameters">
     update Parameters
     set ParameterType = #{parametertype,jdbcType=VARCHAR},
@@ -35,4 +43,17 @@
     select id, ParameterType, ParameterName, ParameterValue, Create_Time
     from Parameters
   </select>
+  
+  <select id="selectByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, ParameterType, ParameterName, ParameterValue, Create_Time
+    from Parameters
+    where ParameterType = #{ParameterType,jdbcType=VARCHAR}  
+  </select>
+  
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, ParameterType, ParameterName, ParameterValue, Create_Time
+    from Parameters
+    where ParameterName = #{ParameterName,jdbcType=VARCHAR}  
+  </select>
+  
 </mapper>

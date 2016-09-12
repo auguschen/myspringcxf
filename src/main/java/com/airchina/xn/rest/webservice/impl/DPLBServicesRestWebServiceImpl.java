@@ -68,19 +68,10 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@POST
-	@Path("/ac/newac")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
-	public Aircraft newAircraftRetAircraft(Aircraft ac) {
-		return aircraftservice.newAircraftRetAircraft(ac);
-	}
-
-	@Override
-	@POST
 	@Path("/ac/new")
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
-	public Boolean newAircraft(Aircraft ac) {
+	public Aircraft newAircraft(Aircraft ac) {
 		return aircraftservice.newAircraft(ac);
 	}
 
@@ -89,9 +80,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Path("/ac/update")
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
-	public Boolean updateAircraft(Aircraft ac) {
-		// TODO Auto-generated method stub
-		return null;
+	public Aircraft updateAircraft(Aircraft ac) {
+		return aircraftservice.updateAircraft(ac);
 	}
 
 	@Override
@@ -100,42 +90,80 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
 	public Boolean deleteAircraft(Aircraft ac) {
-		// TODO Auto-generated method stub
-		return null;
+		return aircraftservice.deleteAircraft(ac);
 	}
 
 	@Override
+	@POST
+	@Path("/logs/new")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
 	public Boolean newLog(Logs l) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@GET
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
 	public List<Logs> getLogs(Logs l) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Boolean newParameter(Parameters p) {
+	@POST
+	@Path("/param/new")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
+	public Parameters newParameter(Parameters p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Boolean updateParameter(Parameters p) {
+	@PUT
+	@Path("/param/update")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
+	public Parameters updateParameter(Parameters p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@DELETE
+	@Path("/param/delete")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
 	public Boolean deleteParameter(Parameters p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Parameters> getParameters(Parameters p) {
+	@GET
+	@Path("/param/get")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Parameters> getParameters() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@GET
+	@Path("/param/get/{parametertype}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Parameters> getParametersByType(@PathParam("parametertype") String parameterType) {
+		return null;
+	}
+
+	@Override
+	@GET
+	@Path("/param/get/{parametername}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Parameters> getParametersByName(@PathParam("parametername") String parameterName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
