@@ -19,7 +19,7 @@
       #{parametervalue,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
 
-  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Parameters">
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Parameters" useGeneratedKeys="true" keyProperty="id">
     insert into Parameters (ParameterType, ParameterName, 
       ParameterValue)
     values (#{parametertype,jdbcType=VARCHAR}, #{parametername,jdbcType=VARCHAR}, 

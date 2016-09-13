@@ -22,15 +22,28 @@ import com.airchina.xn.model.Logs;
 import com.airchina.xn.model.Parameters;
 import com.airchina.xn.rest.webservice.DPLBServicesRestWebService;
 import com.airchina.xn.service.AircraftService;
+import com.airchina.xn.service.ParameterService;
 
 @Service("dplbServicesRestWebService")
 @Path("/")
 public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebService {
 	
-	private static Logger log = Logger.getLogger(DPLBServicesRestWebServiceImpl.class);
+	private static Logger logger = Logger.getLogger(DPLBServicesRestWebServiceImpl.class);
 	
 	@Autowired
 	private AircraftService aircraftservice;
+
+	@Autowired
+	private ParameterService parameterservice;
+	
+	
+	public ParameterService getParameterservice() {
+		return parameterservice;
+	}
+
+	public void setParameterservice(ParameterService parameterservice) {
+		this.parameterservice = parameterservice;
+	}
 
 	public AircraftService getAircraftservice() {
 		return aircraftservice;
@@ -63,6 +76,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Path("/ac/get")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Aircraft> getAllAircraft() {
+		logger.info("aircraft get");
 		return aircraftservice.getAllAircraft();
 	}
 
@@ -118,8 +132,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
 	public Parameters newParameter(Parameters p) {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.newParameter(p);
 	}
 
 	@Override
@@ -128,8 +141,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
 	public Parameters updateParameter(Parameters p) {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.updateParameter(p);
 	}
 
 	@Override
@@ -138,8 +150,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
 	public Boolean deleteParameter(Parameters p) {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.deleteParameter(p);
 	}
 
 	@Override
@@ -147,25 +158,23 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Path("/param/get")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Parameters> getParameters() {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.getAllParameters();
 	}
 
 	@Override
 	@GET
-	@Path("/param/get/{parametertype}")
+	@Path("/param/get/t,{parametertype}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Parameters> getParametersByType(@PathParam("parametertype") String parameterType) {
-		return null;
+		return parameterservice.getParametersByType(parameterType);
 	}
 
 	@Override
 	@GET
-	@Path("/param/get/{parametername}")
+	@Path("/param/get/n,{parametername}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Parameters> getParametersByName(@PathParam("parametername") String parameterName) {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.getParametersByName(parameterName);
 	}
 
 }

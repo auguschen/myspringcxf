@@ -10,12 +10,12 @@ public interface ParameterService {
 	
 	public List<Parameters> getParametersByType(String parameterType);
 	
-	public List<Parameters> getAllParametersByName(String parameterName);
+	public List<Parameters> getParametersByName(String parameterName);
 	
 	public Parameters newParameter(Parameters p);
 
 	public Parameters updateParameter(Parameters p);
 	
-	public Parameters deleteParameter(Parameters p);
+	public Boolean deleteParameter(Parameters p);
 	
 }
