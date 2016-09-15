@@ -22,21 +22,32 @@ import com.airchina.xn.model.Logs;
 import com.airchina.xn.model.Parameters;
 import com.airchina.xn.rest.webservice.DPLBServicesRestWebService;
 import com.airchina.xn.service.AircraftService;
+import com.airchina.xn.service.LogService;
 import com.airchina.xn.service.ParameterService;
 
 @Service("dplbServicesRestWebService")
 @Path("/")
 public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebService {
-	
+
 	private static Logger logger = Logger.getLogger(DPLBServicesRestWebServiceImpl.class);
-	
+
 	@Autowired
 	private AircraftService aircraftservice;
 
 	@Autowired
 	private ParameterService parameterservice;
-	
-	
+
+	@Autowired
+	private LogService logservice;
+
+	public LogService getLogservice() {
+		return logservice;
+	}
+
+	public void setLogservice(LogService logservice) {
+		this.logservice = logservice;
+	}
+
 	public ParameterService getParameterservice() {
 		return parameterservice;
 	}
@@ -56,25 +67,26 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@GET
 	@Path("/ac/get/{regno}")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Aircraft getAircraftByRegNo(@PathParam("regno") String regno) {
 		Aircraft ac = aircraftservice.getAircraftByRegNo(regno);
-		return ac!=null?ac:new Aircraft();
+		return ac != null ? ac : new Aircraft();
 	}
 
 	@Override
 	@GET
-	@Path("/ac/get/{Type_Catalog},{Type_Of_Aircraft}")
-	@Produces({MediaType.APPLICATION_JSON})
-	public List<Aircraft> getAircraftByType(@PathParam("Type_Catalog") String typecatalog, @PathParam("Type_Of_Aircraft") String typeafaircraft) {
+	@Path("/ac/get/{Type_Catalog}&{Type_Of_Aircraft}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Aircraft> getAircraftByType(@PathParam("Type_Catalog") String typecatalog,
+			@PathParam("Type_Of_Aircraft") String typeafaircraft) {
 		List<Aircraft> acList = aircraftservice.getAircraftByType(typecatalog, typeafaircraft);
-		return acList!=null?acList:new ArrayList<Aircraft>();
+		return acList != null ? acList : new ArrayList<Aircraft>();
 	}
 
 	@Override
 	@GET
 	@Path("/ac/get")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Aircraft> getAllAircraft() {
 		logger.info("aircraft get");
 		return aircraftservice.getAllAircraft();
@@ -83,8 +95,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@POST
 	@Path("/ac/new")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Aircraft newAircraft(Aircraft ac) {
 		return aircraftservice.newAircraft(ac);
 	}
@@ -92,8 +104,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@PUT
 	@Path("/ac/update")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Aircraft updateAircraft(Aircraft ac) {
 		return aircraftservice.updateAircraft(ac);
 	}
@@ -101,8 +113,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@DELETE
 	@Path("/ac/delete")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteAircraft(Aircraft ac) {
 		return aircraftservice.deleteAircraft(ac);
 	}
@@ -110,27 +122,26 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@POST
 	@Path("/logs/new")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean newLog(Logs l) {
-		// TODO Auto-generated method stub
-		return null;
+		return logservice.newLog(l);
 	}
 
 	@Override
 	@GET
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
-	public List<Logs> getLogs(Logs l) {
-		// TODO Auto-generated method stub
-		return null;
+	@Path("/logs/get/{objectType}&{objectId}&{operation}&{operatorId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Logs> getLogs(@PathParam("objectType") String objectType, @PathParam("objectId") Integer objectId,
+			@PathParam("operation") String operation, @PathParam("operatorId") Integer operatorId) {
+		return logservice.getLogs(objectType, objectId, operation, operatorId);
 	}
 
 	@Override
 	@POST
 	@Path("/param/new")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Parameters newParameter(Parameters p) {
 		return parameterservice.newParameter(p);
 	}
@@ -138,8 +149,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@PUT
 	@Path("/param/update")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Parameters updateParameter(Parameters p) {
 		return parameterservice.updateParameter(p);
 	}
@@ -147,8 +158,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@DELETE
 	@Path("/param/delete")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteParameter(Parameters p) {
 		return parameterservice.deleteParameter(p);
 	}
@@ -156,23 +167,23 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Override
 	@GET
 	@Path("/param/get")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParameters() {
 		return parameterservice.getAllParameters();
 	}
 
 	@Override
 	@GET
-	@Path("/param/get/t,{parametertype}")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/param/get/t/{parametertype}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByType(@PathParam("parametertype") String parameterType) {
 		return parameterservice.getParametersByType(parameterType);
 	}
 
 	@Override
 	@GET
-	@Path("/param/get/n,{parametername}")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/param/get/n/{parametername}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByName(@PathParam("parametername") String parameterName) {
 		return parameterservice.getParametersByName(parameterName);
 	}

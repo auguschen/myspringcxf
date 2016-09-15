@@ -22,6 +22,14 @@
       #{operation,jdbcType=VARCHAR}, #{operatorid,jdbcType=INTEGER}, #{operationtime,jdbcType=TIMESTAMP}, 
       #{operationdata,jdbcType=LONGVARCHAR})
   </insert>
+  
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Logs" useGeneratedKeys="true" keyProperty="id">
+    insert into Logs (ObjectType, ObjectID, 
+      Operation, OperatorID, OperationData)
+    values (#{objecttype,jdbcType=VARCHAR}, #{objectid,jdbcType=INTEGER}, 
+      #{operation,jdbcType=VARCHAR}, #{operatorid,jdbcType=INTEGER}, #{operationdata,jdbcType=LONGVARCHAR})
+  </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Logs">
     update Logs
     set ObjectType = #{objecttype,jdbcType=VARCHAR},
@@ -41,4 +49,20 @@
     select id, ObjectType, ObjectID, Operation, OperatorID, OperationTime, OperationData
     from Logs
   </select>
+  
+  <select id="selectByCondi" parameterType="com.airchina.xn.model.Logs" resultMap="BaseResultMap">
+    select id, ObjectType, ObjectID, Operation, OperatorID, OperationTime, OperationData
+    from Logs
+    where ObjectType = #{objecttype, jdbcType=VARCHAR}
+    <if test="objectid != 0">
+      and ObjectID = #{objectid,jdbcType=INTEGER}
+    </if>
+    <if test="operation != 'null'">
+      and Operation = #{operation,jdbcType=VARCHAR}
+    </if>
+    <if test="operatorid != 0">
+      and OperatorID = #{operatorid,jdbcType=INTEGER}
+    </if>
+  </select>
+  
 </mapper>

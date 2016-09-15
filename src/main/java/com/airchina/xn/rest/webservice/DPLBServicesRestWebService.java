@@ -24,7 +24,7 @@ public interface DPLBServicesRestWebService {
 //	新增一条日志记录
 	public Boolean newLog(Logs l);
 //	查询日志记录
-	public List<Logs> getLogs(Logs l);
+	public List<Logs> getLogs(String objectType, Integer objectId, String operation, Integer operatorId);
 	
 	
 //	新增一条参数信息

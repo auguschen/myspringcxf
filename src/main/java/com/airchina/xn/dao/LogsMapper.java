@@ -8,9 +8,13 @@ public interface LogsMapper {
 
     int insert(Logs record);
 
+    int insertWithoutID(Logs record);
+
     Logs selectByPrimaryKey(Integer id);
 
     List<Logs> selectAll();
 
     int updateByPrimaryKey(Logs record);
+    
+    List<Logs> selectByCondi(Logs record);
 }
