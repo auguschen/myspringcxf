@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="myspringcxf">
+    <wb-module deploy-name="DPLB_Backend">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
-        <property name="context-root" value="myspringcxf"/>
-        <property name="java-output-path" value="/myspringcxf/target/classes"/>
+        <property name="context-root" value="DPLB_Backend"/>
+        <property name="java-output-path" value="/DPLB_Backend/target/classes"/>
     </wb-module>
 </project-modules>
