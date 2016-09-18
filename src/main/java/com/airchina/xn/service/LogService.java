@@ -10,4 +10,6 @@ public interface LogService {
 	
 	public List<Logs> getLogs(String objectType, Integer objectId, String operation, Integer operatorId);
 	
+	public List<Logs> getAllLogs();
+	
 }

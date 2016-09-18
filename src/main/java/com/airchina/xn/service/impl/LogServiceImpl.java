@@ -43,4 +43,9 @@ public class LogServiceImpl implements LogService {
 		return logsmapper.selectByCondi(record);
 	}
 
+	@Override
+	public List<Logs> getAllLogs() {
+		return logsmapper.selectAll();
+	}
+
 }

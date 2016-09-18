@@ -21,9 +21,11 @@
 
 
 <!-- soap webservice -->  
+<!-- 
 	<jaxws:endpoint id="helloWorld" implementor="com.airchina.xn.soap.webservice.impl.HelloWorldImpl" address="/HelloWorld">  
 	</jaxws:endpoint>  
-	
+ -->	
+ 
 <!-- restful webservice -->  
 <!-- 
 	<jaxrs:server id="rsExampleTest" address="/rest/exam">  
@@ -56,7 +58,7 @@
       <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
     </jaxrs:providers>  
   </jaxrs:server>
-	
+
 <!-- 
 	<jaxrs:server id="restContainer" address="/rest/time">
 		<jaxrs:serviceBeans>

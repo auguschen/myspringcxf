@@ -50,6 +50,13 @@
     from Aircraft
   </select>
   
+  <select id="selectAllPaged" parameterType="map" resultMap="BaseResultMap">
+    select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
+    Create_Time
+    from Aircraft
+    where id > #{pageStart,jdbcType=INTEGER}
+    LIMIT #{currentPage,jdbcType=INTEGER} * #{countPerPage,jdbcType=INTEGER}, #{countPerPage,jdbcType=INTEGER}
+  </select>
   <select id="selectByRegNo" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
     Create_Time
@@ -62,6 +69,14 @@
     Create_Time
     from Aircraft
     where Type_Catalog = #{Type_Catalog,jdbcType=VARCHAR} and Type_Of_Aircraft = #{Type_Of_Aircraft,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByTypePaged" parameterType="map" resultMap="BaseResultMap">
+    select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
+    Create_Time
+    from Aircraft
+    where Type_Catalog = #{Type_Catalog,jdbcType=VARCHAR} and Type_Of_Aircraft = #{Type_Of_Aircraft,jdbcType=VARCHAR}
+    LIMIT #{currentPage,jdbcType=INTEGER} * #{countPerPage,jdbcType=INTEGER}, #{countPerPage,jdbcType=INTEGER}
   </select>
   
   

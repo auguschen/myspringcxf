@@ -75,6 +75,17 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@GET
+	@Path("/ac/get/{Type_Catalog}&{Type_Of_Aircraft}&{pageStart}&{countPerPage}&{currentPage}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Aircraft> getAircraftByType(@PathParam("Type_Catalog") String typecatalog,
+			@PathParam("Type_Of_Aircraft") String typeafaircraft, @PathParam("pageStart") Integer pageStart,
+			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+		List<Aircraft> acList = aircraftservice.getAircraftByType(typecatalog, typeafaircraft);
+		return acList != null ? acList : new ArrayList<Aircraft>();
+	}
+
+	@Override
+	@GET
 	@Path("/ac/get/{Type_Catalog}&{Type_Of_Aircraft}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Aircraft> getAircraftByType(@PathParam("Type_Catalog") String typecatalog,
@@ -93,6 +104,16 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	}
 
 	@Override
+	@GET
+	@Path("/ac/get/{pageStart}&{countPerPage}&{currentPage}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Aircraft> getAllAircraft(@PathParam("pageStart") Integer pageStart,
+			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	@POST
 	@Path("/ac/new")
 	@Consumes({ MediaType.APPLICATION_JSON })
@@ -103,7 +124,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@PUT
-	@Path("/ac/update")
+	@Path("/ac/upd")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Aircraft updateAircraft(Aircraft ac) {
@@ -112,7 +133,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@DELETE
-	@Path("/ac/delete")
+	@Path("/ac/del")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteAircraft(Aircraft ac) {
@@ -126,6 +147,36 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean newLog(Logs l) {
 		return logservice.newLog(l);
+	}
+
+	@Override
+	@GET
+	@Path("/logs/get")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Logs> getAllLogs() {
+		return logservice.getAllLogs();
+	}
+
+	@Override
+	@GET
+	@Path("/logs/get/{pageStart}&{countPerPage}&{currentPage}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Logs> getAllLogs(@PathParam("pageStart") Integer pageStart,
+			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@GET
+	@Path("/logs/get/{objectType}&{objectId}&{operation}&{operatorId}&{pageStart}&{countPerPage}&{currentPage}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Logs> getLogs(@PathParam("objectType") String objectType, @PathParam("objectId") Integer objectId,
+			@PathParam("operation") String operation, @PathParam("operatorId") Integer operatorId,
+			@PathParam("pageStart") Integer pageStart, @PathParam("pageStart") Integer countPerPage,
+			@PathParam("pageStart") Integer currentPage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -148,7 +199,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@PUT
-	@Path("/param/update")
+	@Path("/param/upd")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Parameters updateParameter(Parameters p) {
@@ -157,7 +208,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@DELETE
-	@Path("/param/delete")
+	@Path("/param/del")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteParameter(Parameters p) {
@@ -174,6 +225,16 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@GET
+	@Path("/param/get/{objectType}&{objectId}&{operation}&{operatorId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Parameters> getParameters(@PathParam("pageStart") Integer pageStart,
+			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@GET
 	@Path("/param/get/t/{parametertype}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByType(@PathParam("parametertype") String parameterType) {
@@ -182,10 +243,30 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@GET
+	@Path("/param/get/t/{parametertype}&{objectType}&{objectId}&{operation}&{operatorId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Parameters> getParametersByType(@PathParam("parametertype") String parameterType, @PathParam("pageStart") Integer pageStart,
+			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@GET
 	@Path("/param/get/n/{parametername}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByName(@PathParam("parametername") String parameterName) {
 		return parameterservice.getParametersByName(parameterName);
+	}
+
+	@Override
+	@GET
+	@Path("/param/get/n/{parametername}&{objectType}&{objectId}&{operation}&{operatorId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Parameters> getParametersByName(@PathParam("parametername") String parameterName, @PathParam("pageStart") Integer pageStart,
+			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

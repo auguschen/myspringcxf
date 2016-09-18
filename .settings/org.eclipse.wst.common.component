@@ -2,7 +2,8 @@
     <wb-module deploy-name="DPLB_Backend">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="context-root" value="DPLB_Backend"/>
         <property name="java-output-path" value="/DPLB_Backend/target/classes"/>
     </wb-module>

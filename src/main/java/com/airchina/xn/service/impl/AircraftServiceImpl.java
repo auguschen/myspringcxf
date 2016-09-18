@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airchina.xn.common.PageParam;
 import com.airchina.xn.dao.AircraftMapper;
 import com.airchina.xn.model.Aircraft;
 import com.airchina.xn.service.AircraftService;
@@ -56,6 +57,18 @@ public class AircraftServiceImpl implements AircraftService {
 	public Boolean deleteAircraft(Aircraft ac) {
 		Integer res = aircraftmapper.deleteByPrimaryKey(ac.getId());
 		return res>0?true:false;
+	}
+
+	@Override
+	public List<Aircraft> getAllAircraft(PageParam pp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Aircraft> getAircraftByType(String typecatalog, String typeafaircraft, PageParam pp) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
