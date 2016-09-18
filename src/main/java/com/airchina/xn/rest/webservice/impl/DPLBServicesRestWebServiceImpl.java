@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airchina.xn.common.PageParam;
 import com.airchina.xn.model.Aircraft;
 import com.airchina.xn.model.Logs;
 import com.airchina.xn.model.Parameters;
@@ -79,8 +80,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Aircraft> getAircraftByType(@PathParam("Type_Catalog") String typecatalog,
 			@PathParam("Type_Of_Aircraft") String typeafaircraft, @PathParam("pageStart") Integer pageStart,
-			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
-		List<Aircraft> acList = aircraftservice.getAircraftByType(typecatalog, typeafaircraft);
+			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
+		List<Aircraft> acList = aircraftservice.getAircraftByType(typecatalog, typeafaircraft, new PageParam(pageStart, countPerPage, currentPage));
 		return acList != null ? acList : new ArrayList<Aircraft>();
 	}
 
@@ -108,9 +109,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Path("/ac/get/{pageStart}&{countPerPage}&{currentPage}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Aircraft> getAllAircraft(@PathParam("pageStart") Integer pageStart,
-			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
-		// TODO Auto-generated method stub
-		return null;
+			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
+		return aircraftservice.getAllAircraft(new PageParam(pageStart, countPerPage, currentPage));
 	}
 
 	@Override
@@ -162,7 +162,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Path("/logs/get/{pageStart}&{countPerPage}&{currentPage}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Logs> getAllLogs(@PathParam("pageStart") Integer pageStart,
-			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -173,8 +173,8 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Logs> getLogs(@PathParam("objectType") String objectType, @PathParam("objectId") Integer objectId,
 			@PathParam("operation") String operation, @PathParam("operatorId") Integer operatorId,
-			@PathParam("pageStart") Integer pageStart, @PathParam("pageStart") Integer countPerPage,
-			@PathParam("pageStart") Integer currentPage) {
+			@PathParam("pageStart") Integer pageStart, @PathParam("countPerPage") Integer countPerPage,
+			@PathParam("currentPage") Integer currentPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -225,10 +225,10 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@GET
-	@Path("/param/get/{objectType}&{objectId}&{operation}&{operatorId}")
+	@Path("/param/get/{pageStart}&{countPerPage}&{currentPage}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParameters(@PathParam("pageStart") Integer pageStart,
-			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -243,10 +243,10 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@GET
-	@Path("/param/get/t/{parametertype}&{objectType}&{objectId}&{operation}&{operatorId}")
+	@Path("/param/get/t/{parametertype}&{pageStart}&{countPerPage}&{currentPage}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByType(@PathParam("parametertype") String parameterType, @PathParam("pageStart") Integer pageStart,
-			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -261,10 +261,10 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 
 	@Override
 	@GET
-	@Path("/param/get/n/{parametername}&{objectType}&{objectId}&{operation}&{operatorId}")
+	@Path("/param/get/n/{parametername}&{pageStart}&{countPerPage}&{currentPage}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByName(@PathParam("parametername") String parameterName, @PathParam("pageStart") Integer pageStart,
-			@PathParam("pageStart") Integer countPerPage, @PathParam("pageStart") Integer currentPage) {
+			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}

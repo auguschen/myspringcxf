@@ -61,14 +61,12 @@ public class AircraftServiceImpl implements AircraftService {
 
 	@Override
 	public List<Aircraft> getAllAircraft(PageParam pp) {
-		// TODO Auto-generated method stub
-		return null;
+		return aircraftmapper.selectAllPaged(pp.getOffsetStart(), pp.getCountPerPage(), pp.getCurrentPage());
 	}
 
 	@Override
 	public List<Aircraft> getAircraftByType(String typecatalog, String typeafaircraft, PageParam pp) {
-		// TODO Auto-generated method stub
-		return null;
+		return aircraftmapper.selectByTypePaged(typecatalog, typeafaircraft, pp.getOffsetStart(), pp.getCountPerPage(), pp.getCurrentPage());
 	}
 
 
