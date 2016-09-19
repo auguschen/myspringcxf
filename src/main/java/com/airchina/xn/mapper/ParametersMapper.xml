@@ -41,7 +41,16 @@
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, ParameterType, ParameterName, ParameterValue, Create_Time
-    from Parameters
+    from Parameters 
+  </select>
+  
+  <select id="selectAllPaged" resultMap="BaseResultMap">
+    select * from (
+	    select @rownum:=@rownum+1 as RowNum, P.id, ParameterType, P.ParameterName, P.ParameterValue, P.Create_Time
+	    from Parameters P, (select @rownum:=0) R
+	  ) PR
+    where RowNum > #{currentPage,jdbcType=INTEGER} * #{countPerPage,jdbcType=INTEGER}
+    limit 0, #{countPerPage,jdbcType=INTEGER}
   </select>
   
   <select id="selectByType" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -54,6 +63,26 @@
     select id, ParameterType, ParameterName, ParameterValue, Create_Time
     from Parameters
     where ParameterName = #{ParameterName,jdbcType=VARCHAR}  
+  </select>
+  
+  <select id="selectByTypePaged" resultMap="BaseResultMap">
+    select * from (
+	    select @rownum:=@rownum+1 as RowNum, P.id, P.ParameterType, P.ParameterName, P.ParameterValue, P.Create_Time
+	    from Parameters P, (select @rownum:=0) R 
+	    where P.ParameterType = #{ParameterType,jdbcType=VARCHAR}
+    ) PR  
+    where RowNum > #{currentPage,jdbcType=INTEGER} * #{countPerPage,jdbcType=INTEGER}
+    limit 0, #{countPerPage,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByNamePaged" resultMap="BaseResultMap">
+    select * from (
+      select @rownum:=@rownum+1 as RowNum, P.id, P.ParameterType, P.ParameterName, P.ParameterValue, P.Create_Time
+      from Parameters P, (select @rownum:=0) R 
+      where P.ParameterName = #{ParameterName,jdbcType=VARCHAR}  
+    ) PR  
+    where RowNum > #{currentPage,jdbcType=INTEGER} * #{countPerPage,jdbcType=INTEGER}
+    limit 0, #{countPerPage,jdbcType=INTEGER}
   </select>
   
 </mapper>

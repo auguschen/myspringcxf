@@ -50,6 +50,13 @@
     from Logs
   </select>
   
+  <select id="selectAllPaged" resultMap="BaseResultMap">
+    select id, ObjectType, ObjectID, Operation, OperatorID, OperationTime, OperationData
+    from Logs
+    where id > #{currentPage,jdbcType=INTEGER} * #{countPerPage,jdbcType=INTEGER}
+    limit 0, #{countPerPage,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByCondi" parameterType="com.airchina.xn.model.Logs" resultMap="BaseResultMap">
     select id, ObjectType, ObjectID, Operation, OperatorID, OperationTime, OperationData
     from Logs
@@ -63,6 +70,25 @@
     <if test="operatorid != 0">
       and OperatorID = #{operatorid,jdbcType=INTEGER}
     </if>
+  </select>
+  
+  <select id="selectByCondiPaged" resultMap="BaseResultMap">
+    select * from (
+	    select @rownum:=@rownum+1 as RowNum, L.id, L.ObjectType, L.ObjectID, L.Operation, L.OperatorID, L.OperationTime, L.OperationData
+	    from Logs L, (select @rownum:=0) R
+	    where L.ObjectType = #{objectType, jdbcType=VARCHAR}
+	    <if test="objectId != 0">
+	      and ObjectID = #{objectId,jdbcType=INTEGER}
+	    </if>
+	    <if test="operation != 'null'">
+	      and L.Operation = #{operation,jdbcType=VARCHAR}
+	    </if>
+	    <if test="operatorId != 0">
+	      and L.OperatorID = #{operatorId,jdbcType=INTEGER}
+	    </if>
+    ) LR
+    where RowNum > #{currentPage,jdbcType=INTEGER} * #{countPerPage,jdbcType=INTEGER}
+    limit 0, #{countPerPage,jdbcType=INTEGER}
   </select>
   
 </mapper>

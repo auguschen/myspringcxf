@@ -12,6 +12,9 @@ import java.io.Serializable;
 public class PageParam implements Serializable {
 
 	/**
+	 * 目前 offsetStart 并未使用上。
+	 * countPerPage 每页记录数
+	 * currentPage  当前页数
 	 * 
 	 */
 	private static final long serialVersionUID = -8051314263192041723L;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airchina.xn.common.PageParam;
 import com.airchina.xn.dao.ParametersMapper;
 import com.airchina.xn.model.Parameters;
 import com.airchina.xn.service.ParameterService;
@@ -54,6 +55,21 @@ public class ParameterServiceImpl implements ParameterService {
 	public Boolean deleteParameter(Parameters p) {
 		Integer res = parametersmapper.deleteByPrimaryKey(p.getId());
 		return res>0?true:false;
+	}
+
+	@Override
+	public List<Parameters> getAllParameters(PageParam pp) {
+		return parametersmapper.selectAllPaged(pp.getOffsetStart(), pp.getCountPerPage(), pp.getCurrentPage());
+	}
+
+	@Override
+	public List<Parameters> getParametersByType(String parameterType, PageParam pp) {
+		return parametersmapper.selectByTypePaged(parameterType, pp.getOffsetStart(), pp.getCountPerPage(), pp.getCurrentPage());
+	}
+
+	@Override
+	public List<Parameters> getParametersByName(String parameterName, PageParam pp) {
+		return parametersmapper.selectByNamePaged(parameterName, pp.getOffsetStart(), pp.getCountPerPage(), pp.getCurrentPage());
 	}
 
 }

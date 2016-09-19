@@ -50,7 +50,7 @@
     from Aircraft
   </select>
   
-  <select id="selectAllPaged" parameterType="map" resultMap="BaseResultMap">
+  <select id="selectAllPaged" resultMap="BaseResultMap">
     select id, Type_Catalog, Type_Of_Aircraft, Aircraft_Description, Registered_Number, 
     Create_Time
     from Aircraft

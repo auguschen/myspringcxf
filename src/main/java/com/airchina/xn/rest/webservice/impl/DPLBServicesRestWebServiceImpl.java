@@ -65,6 +65,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 		this.aircraftservice = aircraftservice;
 	}
 
+//	航空器
 	@Override
 	@GET
 	@Path("/ac/get/{regno}")
@@ -140,6 +141,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 		return aircraftservice.deleteAircraft(ac);
 	}
 
+//	日志
 	@Override
 	@POST
 	@Path("/logs/new")
@@ -163,8 +165,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Logs> getAllLogs(@PathParam("pageStart") Integer pageStart,
 			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
-		// TODO Auto-generated method stub
-		return null;
+		return logservice.getAllLogs(new PageParam(pageStart, countPerPage, currentPage));
 	}
 
 	@Override
@@ -175,8 +176,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 			@PathParam("operation") String operation, @PathParam("operatorId") Integer operatorId,
 			@PathParam("pageStart") Integer pageStart, @PathParam("countPerPage") Integer countPerPage,
 			@PathParam("currentPage") Integer currentPage) {
-		// TODO Auto-generated method stub
-		return null;
+		return logservice.getLogs(objectType, objectId, operation, operatorId, new PageParam(pageStart, countPerPage, currentPage));
 	}
 
 	@Override
@@ -188,6 +188,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 		return logservice.getLogs(objectType, objectId, operation, operatorId);
 	}
 
+//	系统参数
 	@Override
 	@POST
 	@Path("/param/new")
@@ -229,8 +230,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParameters(@PathParam("pageStart") Integer pageStart,
 			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.getAllParameters(new PageParam(pageStart, countPerPage, currentPage));
 	}
 
 	@Override
@@ -247,8 +247,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByType(@PathParam("parametertype") String parameterType, @PathParam("pageStart") Integer pageStart,
 			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.getParametersByType(parameterType, new PageParam(pageStart, countPerPage, currentPage));
 	}
 
 	@Override
@@ -265,8 +264,7 @@ public class DPLBServicesRestWebServiceImpl implements DPLBServicesRestWebServic
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Parameters> getParametersByName(@PathParam("parametername") String parameterName, @PathParam("pageStart") Integer pageStart,
 			@PathParam("countPerPage") Integer countPerPage, @PathParam("currentPage") Integer currentPage) {
-		// TODO Auto-generated method stub
-		return null;
+		return parameterservice.getParametersByName(parameterName, new PageParam(pageStart, countPerPage, currentPage));
 	}
 
 }

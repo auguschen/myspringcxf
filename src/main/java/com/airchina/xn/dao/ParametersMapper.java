@@ -22,4 +22,12 @@ public interface ParametersMapper {
     
     List<Parameters> selectByName(@Param("ParameterName") String parameterName);
 
+    List<Parameters> selectAllPaged(@Param("pageStart") Integer pageStart, @Param("countPerPage") Integer countPerPage,
+			@Param("currentPage") Integer currentPage);
+
+    List<Parameters> selectByTypePaged(@Param("ParameterType") String parameterType, @Param("pageStart") Integer pageStart, @Param("countPerPage") Integer countPerPage,
+			@Param("currentPage") Integer currentPage);
+    
+    List<Parameters> selectByNamePaged(@Param("ParameterName") String parameterName, @Param("pageStart") Integer pageStart, @Param("countPerPage") Integer countPerPage,
+			@Param("currentPage") Integer currentPage);
 }
