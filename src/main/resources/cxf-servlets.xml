@@ -38,7 +38,7 @@
 	</jaxrs:server>
  -->
   <!-- 电子记录本Restful Web服务 -->
-<!--    
+   
   <jaxrs:server id="restDigitalPilotLogBookRestWebService" address="/rest/dplb">  
     <jaxrs:serviceBeans>  
       <ref bean="DigitalPilotLogBookRestWebService" />  
@@ -47,7 +47,7 @@
       <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />  
     </jaxrs:providers>  
   </jaxrs:server>
- -->
+
   <!-- 电子记录本基础服务Restful Web服务 -->
   
   <jaxrs:server id="restDPLBServicesRestWebService" address="/rest/dplbservice">  

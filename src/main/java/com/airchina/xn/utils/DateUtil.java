@@ -19,16 +19,12 @@ public class DateUtil {
     private static String timePattern = "HH:mm";  
     private static Calendar cale = Calendar.getInstance();  
     public static final String TS_FORMAT = DateUtil.getDatePattern() + " HH:mm:ss.S";  
-    /** 日期格式yyyy-MM字符串常量 */  
-    private static final String MONTH_FORMAT = "yyyy-MM";  
     /** 日期格式yyyy-MM-dd字符串常量 */  
     private static final String DATE_FORMAT = "yyyy-MM-dd";  
     /** 日期格式HH:mm:ss字符串常量 */  
     private static final String HOUR_FORMAT = "HH:mm:ss";  
     /** 日期格式yyyy-MM-dd HH:mm:ss字符串常量 */  
     private static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";  
-    /** 某天开始时分秒字符串常量  00:00:00 */  
-    private static final String DAY_BEGIN_STRING_HHMMSS = " 00:00:00";  
     /**  某天结束时分秒字符串常量  23:59:59  */  
     public static final String DAY_END_STRING_HHMMSS = " 23:59:59";  
     private static SimpleDateFormat sdf_date_format = new SimpleDateFormat(DATE_FORMAT);  
