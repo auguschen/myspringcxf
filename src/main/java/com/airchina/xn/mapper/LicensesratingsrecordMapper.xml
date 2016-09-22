@@ -41,4 +41,18 @@
     select id, Pilot_ID, Licenses, License_Date, Rating, Remarks, Create_Time
     from LicensesRatingsRecord
   </select>
+
+  <select id="selectAllByPilotID" resultMap="BaseResultMap">
+    select id, Pilot_ID, Licenses, License_Date, Rating, Remarks, Create_Time
+    from LicensesRatingsRecord
+    where Pilot_ID = #{Pilot_ID, jdbcType=INTEGER}
+  </select>
+
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Licensesratingsrecord" useGeneratedKeys="true" keyProperty="id">
+    insert into LicensesRatingsRecord (Pilot_ID, Licenses, 
+      License_Date, Rating, Remarks)
+    values (#{pilotId,jdbcType=INTEGER}, #{licenses,jdbcType=VARCHAR}, 
+      #{licenseDate,jdbcType=DATE}, #{rating,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  
 </mapper>

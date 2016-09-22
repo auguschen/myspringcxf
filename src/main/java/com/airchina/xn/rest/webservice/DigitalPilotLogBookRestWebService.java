@@ -5,6 +5,7 @@ package com.airchina.xn.rest.webservice;
 
 import java.util.List;
 
+import com.airchina.xn.entities.LicensesRatingResp;
 import com.airchina.xn.model.Flightcheck;
 import com.airchina.xn.model.Flighttraining;
 import com.airchina.xn.model.Licensesratingsrecord;
@@ -46,11 +47,11 @@ public interface DigitalPilotLogBookRestWebService {
 //	查询一个飞行员的执照等级记录信息
 	public List<Licensesratingsrecord> pilotlicenseratingsrecordbypilot(Integer pilot_id);
 //	新增一个飞行员的执照等级记录信息
-	public Boolean newpilotlicenseratingsrecord(Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList);
+	public LicensesRatingResp newpilotlicenseratingsrecord(Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList);
 //	更新一个飞行员的执照等级记录信息
-	public Boolean updatepilotlicenseratingsrecord(Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList);
+	public LicensesRatingResp updatepilotlicenseratingsrecord(Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList);
 //	删除一个飞行员的执照等级记录信息
-	public Boolean deletepilotlicenseratingsrecord(Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList);
+	public LicensesRatingResp deletepilotlicenseratingsrecord(Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList);
 	
 	/**
 	 * 

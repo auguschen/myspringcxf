@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airchina.xn.entities.LicensesRatingResp;
 import com.airchina.xn.model.Flightcheck;
 import com.airchina.xn.model.Flighttraining;
 import com.airchina.xn.model.Licensesratingsrecord;
@@ -23,6 +24,7 @@ import com.airchina.xn.model.Routineflight;
 import com.airchina.xn.model.Simulatortraining;
 import com.airchina.xn.model.Summaryoflogbooks;
 import com.airchina.xn.rest.webservice.DigitalPilotLogBookRestWebService;
+import com.airchina.xn.service.LicensesRatingService;
 import com.airchina.xn.service.PilotService;
 
 @Service("DigitalPilotLogBookRestWebService")
@@ -31,7 +33,18 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 	@Autowired
 	private PilotService pilotservice;
+	
+	@Autowired
+	private LicensesRatingService licensesratingservice;
 		
+	public LicensesRatingService getLicensesratingservice() {
+		return licensesratingservice;
+	}
+
+	public void setLicensesratingservice(LicensesRatingService licensesratingservice) {
+		this.licensesratingservice = licensesratingservice;
+	}
+
 	public PilotService getPilotservice() {
 		return pilotservice;
 	}
@@ -115,8 +128,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/lr/get/{pilot_id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Licensesratingsrecord> pilotlicenseratingsrecordbypilot(@PathParam("pilot_id") Integer pilot_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return licensesratingservice.getLicensesRatingByPilotId(pilot_id);
 	}
 
 	@Override
@@ -124,9 +136,8 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/lr/new/{pilot_id}")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Boolean newpilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
-		// TODO Auto-generated method stub
-		return null;
+	public LicensesRatingResp newpilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
+		return licensesratingservice.newLicensesRating(pilot_id, licenseratingsrecordList);
 	}
 
 	@Override
@@ -134,9 +145,8 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/lr/upd/{pilot_id}")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Boolean updatepilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
-		// TODO Auto-generated method stub
-		return null;
+	public LicensesRatingResp updatepilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
+		return licensesratingservice.updateLicensesRating(pilot_id, licenseratingsrecordList);
 	}
 
 	@Override
@@ -144,9 +154,8 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/lr/del/{pilot_id}")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Boolean deletepilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
-		// TODO Auto-generated method stub
-		return null;
+	public LicensesRatingResp deletepilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
+		return licensesratingservice.deleteLicensesRating(pilot_id, licenseratingsrecordList);
 	}
 
 //	飞行累积信息
