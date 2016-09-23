@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airchina.xn.entities.LicensesRatingResp;
+import com.airchina.xn.entities.SummaryoflogbooksResp;
 import com.airchina.xn.model.Flightcheck;
 import com.airchina.xn.model.Flighttraining;
 import com.airchina.xn.model.Licensesratingsrecord;
@@ -166,13 +167,13 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	}
 
 	@Override
-	public Boolean newsummaryoflogbooks(@PathParam("pilot_id") Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList) {
+	public SummaryoflogbooksResp newsummaryoflogbooks(@PathParam("pilot_id") Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Boolean updatesummaryoflogbooks(@PathParam("pilot_id") Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList) {
+	public SummaryoflogbooksResp updatesummaryoflogbooks(@PathParam("pilot_id") Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList) {
 		// TODO Auto-generated method stub
 		return null;
 	}

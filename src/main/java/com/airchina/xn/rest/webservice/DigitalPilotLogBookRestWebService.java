@@ -6,6 +6,7 @@ package com.airchina.xn.rest.webservice;
 import java.util.List;
 
 import com.airchina.xn.entities.LicensesRatingResp;
+import com.airchina.xn.entities.SummaryoflogbooksResp;
 import com.airchina.xn.model.Flightcheck;
 import com.airchina.xn.model.Flighttraining;
 import com.airchina.xn.model.Licensesratingsrecord;
@@ -62,9 +63,9 @@ public interface DigitalPilotLogBookRestWebService {
 //	查询一个飞行员的经验累计
 	public List<Summaryoflogbooks> summaryoflogbooksbypilot(Integer pilot_id);
 //	新增一个飞行员的经验累计
-	public Boolean newsummaryoflogbooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
+	public SummaryoflogbooksResp newsummaryoflogbooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
 //	更新一个飞行员的经验累计
-	public Boolean updatesummaryoflogbooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
+	public SummaryoflogbooksResp updatesummaryoflogbooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
 
 	/**
 	 * 

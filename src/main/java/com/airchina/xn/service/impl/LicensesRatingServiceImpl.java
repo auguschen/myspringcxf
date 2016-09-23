@@ -39,12 +39,20 @@ public class LicensesRatingServiceImpl implements LicensesRatingService {
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
+		List<Boolean> iserror = new ArrayList<Boolean>();
 		for(Licensesratingsrecord lrr:licenseratingsrecordList){
 			lrr.setPilotId(pilot_id);
-			Integer re = licensesratingsrecordmapper.insertWithoutID(lrr);
-			messages.add("effcet record " + re.toString());			
+			try {
+				Integer re = licensesratingsrecordmapper.insertWithoutID(lrr);
+				messages.add("effcet record " + re.toString());		
+				iserror.add(false);
+			} catch (Exception e) {
+				iserror.add(true);
+				messages.add(e.getMessage());			
+			}
 		}
 		returnMessage.setMessages(messages);
+		returnMessage.setIsError(iserror);
 		res.setReturnMessage(returnMessage);
 		res.setIsSuccessful(true);
 		res.setLicensesRatingsRecords(licenseratingsrecordList);
@@ -58,16 +66,25 @@ public class LicensesRatingServiceImpl implements LicensesRatingService {
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
+		List<Boolean> iserror = new ArrayList<Boolean>();
 		for(Licensesratingsrecord lrr:licenseratingsrecordList){
 			if(pilot_id.equals(lrr.getPilotId())){
-				Integer re = licensesratingsrecordmapper.updateByPrimaryKey(lrr);
-				messages.add("effcet record " + re.toString());			
+				try {
+					Integer re = licensesratingsrecordmapper.updateByPrimaryKey(lrr);
+					messages.add("effcet record " + re.toString());	
+					iserror.add(false);
+				} catch (Exception e) {
+					iserror.add(true);
+					messages.add(e.getMessage());			
+				}
 			}else{
+				iserror.add(true);
 				messages.add("pilot_id not equal");			
 			}
 		}
 		returnMessage.setMessages(messages);
 		res.setReturnMessage(returnMessage);
+		returnMessage.setIsError(iserror);
 		res.setIsSuccessful(true);
 		res.setLicensesRatingsRecords(licenseratingsrecordList);
 		return res;
@@ -79,17 +96,26 @@ public class LicensesRatingServiceImpl implements LicensesRatingService {
 		LicensesRatingResp res = new LicensesRatingResp();
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
+		List<Boolean> iserror = new ArrayList<Boolean>();
 		List<String> messages = new ArrayList<String>();
 		for(Licensesratingsrecord lrr:licenseratingsrecordList){
 			if(pilot_id.equals(lrr.getPilotId())){
-				Integer re = licensesratingsrecordmapper.deleteByPrimaryKey(lrr.getId());
-				messages.add("effcet record " + re.toString());
+				try {
+					Integer re = licensesratingsrecordmapper.deleteByPrimaryKey(lrr.getId());
+					messages.add("effcet record " + re.toString());
+					iserror.add(false);
+				} catch (Exception e) {
+					iserror.add(true);
+					messages.add(e.getMessage());			
+				}
 			}else{
+				iserror.add(true);
 				messages.add("pilot_id not equal");			
 			}
 		}
 		returnMessage.setMessages(messages);
 		res.setReturnMessage(returnMessage);
+		returnMessage.setIsError(iserror);
 		res.setIsSuccessful(true);
 		res.setLicensesRatingsRecords(licenseratingsrecordList);
 		return res;
