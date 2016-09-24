@@ -95,6 +95,23 @@
 			<version>2.6</version>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<id>Mac</id>
+			<properties>
+				<env>Mac</env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>T400</id>
+			<properties>
+				<env>T400</env>
+			</properties>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>
@@ -108,14 +125,21 @@
 				<version>8.1.16.v20140903</version>
 			</plugin>
 		</plugins>
+		<filters>
+			  <filter>src/main/resources/dbconf/${env}.jdbc.properties</filter>
+		</filters>
 		<resources>
-		  <resource>
-		    <directory>src/main/java</directory>
-		    <includes>
-		      <include>**/*.xml</include>
-		    </includes>
-		    <filtering>true</filtering>
-		  </resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+			    <directory>src/main/resources</directory>
+			    <filtering>true</filtering>
+			</resource>
 		</resources>
 	</build>
 </project>
