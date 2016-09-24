@@ -27,6 +27,7 @@ import com.airchina.xn.model.Summaryoflogbooks;
 import com.airchina.xn.rest.webservice.DigitalPilotLogBookRestWebService;
 import com.airchina.xn.service.LicensesRatingService;
 import com.airchina.xn.service.PilotService;
+import com.airchina.xn.service.SummaryOfLogBooksService;
 
 @Service("DigitalPilotLogBookRestWebService")
 @Path("/")
@@ -37,7 +38,18 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	
 	@Autowired
 	private LicensesRatingService licensesratingservice;
+	
+	@Autowired
+	private SummaryOfLogBooksService summaryoflogbooksservice;
 		
+	public SummaryOfLogBooksService getSummaryoflogbooksservice() {
+		return summaryoflogbooksservice;
+	}
+
+	public void setSummaryoflogbooksservice(SummaryOfLogBooksService summaryoflogbooksservice) {
+		this.summaryoflogbooksservice = summaryoflogbooksservice;
+	}
+
 	public LicensesRatingService getLicensesratingservice() {
 		return licensesratingservice;
 	}
@@ -126,7 +138,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 //	执照等级记录
 	@Override
 	@GET
-	@Path("/lr/get/{pilot_id}")
+	@Path("/l/get/{pilot_id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Licensesratingsrecord> pilotlicenseratingsrecordbypilot(@PathParam("pilot_id") Integer pilot_id) {
 		return licensesratingservice.getLicensesRatingByPilotId(pilot_id);
@@ -134,7 +146,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 	@Override
 	@POST
-	@Path("/lr/new/{pilot_id}")
+	@Path("/l/new/{pilot_id}")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public LicensesRatingResp newpilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
@@ -143,7 +155,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 	@Override
 	@PUT
-	@Path("/lr/upd/{pilot_id}")
+	@Path("/l/upd/{pilot_id}")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public LicensesRatingResp updatepilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
@@ -152,7 +164,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 	@Override
 	@DELETE
-	@Path("/lr/del/{pilot_id}")
+	@Path("/l/del/{pilot_id}")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public LicensesRatingResp deletepilotlicenseratingsrecord(@PathParam("pilot_id") Integer pilot_id, List<Licensesratingsrecord> licenseratingsrecordList) {
@@ -161,18 +173,28 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 //	飞行累积信息
 	@Override
+	@GET
+	@Path("/solb/get/{pilot_id}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Summaryoflogbooks> summaryoflogbooksbypilot(@PathParam("pilot_id") Integer pilot_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return summaryoflogbooksservice.getSummaryofLogBooksByPilotID(pilot_id);
 	}
 
 	@Override
+	@POST
+	@Path("/solb/new/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public SummaryoflogbooksResp newsummaryoflogbooks(@PathParam("pilot_id") Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@PUT
+	@Path("/solb/upd/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public SummaryoflogbooksResp updatesummaryoflogbooks(@PathParam("pilot_id") Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList) {
 		// TODO Auto-generated method stub
 		return null;
@@ -180,24 +202,39 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 //	日常飞行
 	@Override
+	@GET
+	@Path("/r/get/{pilot_id}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Routineflight> routineFlightbyPilotid(@PathParam("pilot_id") Integer pilot_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@POST
+	@Path("/r/new/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean newRoutineflight(@PathParam("pilot_id") Integer pilot_id, List<Routineflight> routineflgihtList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@PUT
+	@Path("/r/upd/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean updateRoutineflight(@PathParam("pilot_id") Integer pilot_id, List<Routineflight> routineflgihtList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@DELETE
+	@Path("/r/del/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteRoutineflight(@PathParam("pilot_id") Integer pilot_id, List<Routineflight> routineflgihtList) {
 		// TODO Auto-generated method stub
 		return null;
@@ -205,24 +242,39 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 //	飞行训练
 	@Override
+	@GET
+	@Path("/t/get/{pilot_id}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Flighttraining> flightTrainingbyPilotid(@PathParam("pilot_id") Integer pilot_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@POST
+	@Path("/t/new/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean newFlightraining(@PathParam("pilot_id") Integer pilot_id, List<Flighttraining> flighttrainingList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@PUT
+	@Path("/t/upd/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean updateFlightraining(@PathParam("pilot_id") Integer pilot_id, List<Flighttraining> flighttrainingList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@DELETE
+	@Path("/t/del/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteFlightraining(@PathParam("pilot_id") Integer pilot_id, List<Flighttraining> flighttrainingList) {
 		// TODO Auto-generated method stub
 		return null;
@@ -230,24 +282,39 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 //	飞行检查
 	@Override
+	@GET
+	@Path("/c/get/{pilot_id}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Flightcheck> flightCheckbyPilotid(@PathParam("pilot_id") Integer pilot_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@POST
+	@Path("/c/new/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean newFlightcheck(@PathParam("pilot_id") Integer pilot_id, List<Flightcheck> flightcheckList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@PUT
+	@Path("/c/upd/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean updateFlightcheck(@PathParam("pilot_id") Integer pilot_id, List<Flightcheck> flightcheckList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@DELETE
+	@Path("/c/del/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteFlightcheck(@PathParam("pilot_id") Integer pilot_id, List<Flightcheck> flightcheckList) {
 		// TODO Auto-generated method stub
 		return null;
@@ -255,24 +322,39 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 
 //	模拟机训练
 	@Override
+	@GET
+	@Path("/s/get/{pilot_id}")
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Simulatortraining> simulatorTrainingbyPilotid(@PathParam("pilot_id") Integer pilot_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@POST
+	@Path("/s/new/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean newSimulatortraining(@PathParam("pilot_id") Integer pilot_id, List<Simulatortraining> simulatortrainingList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@PUT
+	@Path("/s/upd/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean updateSimulatortraining(@PathParam("pilot_id") Integer pilot_id, List<Simulatortraining> simulatortrainingList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@DELETE
+	@Path("/s/del/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Boolean deleteSimulatortraining(@PathParam("pilot_id") Integer pilot_id, List<Simulatortraining> simulatortrainingList) {
 		// TODO Auto-generated method stub
 		return null;
