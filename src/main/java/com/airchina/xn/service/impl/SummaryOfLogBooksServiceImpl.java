@@ -67,14 +67,18 @@ public class SummaryOfLogBooksServiceImpl implements SummaryOfLogBooksService {
 		List<String> messages = new ArrayList<String>();
 		List<Boolean> iserror = new ArrayList<Boolean>();
 		for(Summaryoflogbooks solb:summaryoflogbooksList){
-			solb.setPilotId(pilot_id);
-			try {
-				Integer re = summaryoflogbooksmapper.updateByPrimaryKey(solb);
-				messages.add("effcet record " + re.toString());		
-				iserror.add(false);
-			} catch (Exception e) {
+			if(pilot_id.equals(solb.getPilotId())){
+				try {
+					Integer re = summaryoflogbooksmapper.updateByPrimaryKey(solb);
+					messages.add("effcet record " + re.toString());		
+					iserror.add(false);
+				} catch (Exception e) {
+					iserror.add(true);
+					messages.add(e.getMessage());			
+				}
+			}else{
 				iserror.add(true);
-				messages.add(e.getMessage());			
+				messages.add("pilot_id not equal");							
 			}
 		}
 		returnMessage.setMessages(messages);

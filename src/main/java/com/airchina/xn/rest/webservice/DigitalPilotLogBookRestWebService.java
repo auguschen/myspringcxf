@@ -5,7 +5,11 @@ package com.airchina.xn.rest.webservice;
 
 import java.util.List;
 
+import com.airchina.xn.entities.FlightCheckResp;
+import com.airchina.xn.entities.FlightTrainingResp;
 import com.airchina.xn.entities.LicensesRatingResp;
+import com.airchina.xn.entities.RoutineFlightResp;
+import com.airchina.xn.entities.SimulatorTrainingResp;
 import com.airchina.xn.entities.SummaryoflogbooksResp;
 import com.airchina.xn.model.Flightcheck;
 import com.airchina.xn.model.Flighttraining;
@@ -75,11 +79,11 @@ public interface DigitalPilotLogBookRestWebService {
 //	取得一个飞行员的日常飞行信息列表
 	public List<Routineflight> routineFlightbyPilotid(Integer pilot_id);	
 //	新增一个飞行员的日常飞行信息
-	public Boolean newRoutineflight(Integer pilot_id, List<Routineflight> routineflgihtList);
+	public RoutineFlightResp newRoutineflight(Integer pilot_id, List<Routineflight> routineflgihtList);
 //	更新一个飞行员的日常飞行信息
-	public Boolean updateRoutineflight(Integer pilot_id, List<Routineflight> routineflgihtList);
+	public RoutineFlightResp updateRoutineflight(Integer pilot_id, List<Routineflight> routineflgihtList);
 //	删除一个飞行员的日常飞行信息
-	public Boolean deleteRoutineflight(Integer pilot_id, List<Routineflight> routineflgihtList);
+	public RoutineFlightResp deleteRoutineflight(Integer pilot_id, List<Routineflight> routineflgihtList);
 	
 	/**
 	 * 
@@ -89,11 +93,11 @@ public interface DigitalPilotLogBookRestWebService {
 //	取得一个飞行员的飞行训练信息列表
 	public List<Flighttraining> flightTrainingbyPilotid(Integer pilot_id);	
 //	新增一个飞行员的飞行训练信息
-	public Boolean newFlightraining(Integer pilot_id, List<Flighttraining> flighttrainingList);
+	public FlightTrainingResp newFlightraining(Integer pilot_id, List<Flighttraining> flighttrainingList);
 //	修改一个飞行员的飞行训练信息
-	public Boolean updateFlightraining(Integer pilot_idp, List<Flighttraining> flighttrainingList);
+	public FlightTrainingResp updateFlightraining(Integer pilot_idp, List<Flighttraining> flighttrainingList);
 //	删除一个飞行员的飞行训练信息
-	public Boolean deleteFlightraining(Integer pilot_id, List<Flighttraining> flighttrainingList);
+	public FlightTrainingResp deleteFlightraining(Integer pilot_id, List<Flighttraining> flighttrainingList);
 	
 	/**
 	 * 
@@ -103,11 +107,11 @@ public interface DigitalPilotLogBookRestWebService {
 //	取得一个飞行员的飞行检查信息列表
 	public List<Flightcheck> flightCheckbyPilotid(Integer pilot_id);
 //	新增一个飞行员的飞行检查信息
-	public Boolean newFlightcheck(Integer pilot_id, List<Flightcheck> flightcheckList);
+	public FlightCheckResp newFlightcheck(Integer pilot_id, List<Flightcheck> flightcheckList);
 //	修改一个飞行员的飞行检查信息
-	public Boolean updateFlightcheck(Integer pilot_id, List<Flightcheck> flightcheckList);
+	public FlightCheckResp updateFlightcheck(Integer pilot_id, List<Flightcheck> flightcheckList);
 //	删除一个飞行员的飞行检查信息
-	public Boolean deleteFlightcheck(Integer pilot_id, List<Flightcheck> flightcheckList);
+	public FlightCheckResp deleteFlightcheck(Integer pilot_id, List<Flightcheck> flightcheckList);
 	
 	/**
 	 * 
@@ -117,11 +121,11 @@ public interface DigitalPilotLogBookRestWebService {
 //	取得一个飞行员的模拟机训练信息列表
 	public List<Simulatortraining> simulatorTrainingbyPilotid(Integer pilot_id);
 //	新增一个飞行员的模拟机训练信息
-	public Boolean newSimulatortraining(Integer pilot_id, List<Simulatortraining> simulatortrainingList);
+	public SimulatorTrainingResp newSimulatortraining(Integer pilot_id, List<Simulatortraining> simulatortrainingList);
 //	修改一个飞行员的模拟机训练信息
-	public Boolean updateSimulatortraining(Integer pilot_id, List<Simulatortraining> simulatortrainingList);
+	public SimulatorTrainingResp updateSimulatortraining(Integer pilot_id, List<Simulatortraining> simulatortrainingList);
 //	删除一个飞行员的模拟机训练信息
-	public Boolean deleteSimulatortraining(Integer pilot_id, List<Simulatortraining> simulatortrainingList);
+	public SimulatorTrainingResp deleteSimulatortraining(Integer pilot_id, List<Simulatortraining> simulatortrainingList);
 	
 
 }

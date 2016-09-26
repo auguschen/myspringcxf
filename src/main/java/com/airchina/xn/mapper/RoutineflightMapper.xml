@@ -55,6 +55,28 @@
       #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Routineflight" useGeneratedKeys="true" keyProperty="id">
+    insert into RoutineFlight (Pilot_ID, Flight_Date, 
+      Type_Of_Aircraft, Registered_Number, Flight_Leg_From, 
+      Flight_Leg_To, Flight_Leg_Dep, Flight_Leg_Arr, 
+      Flight_Leg_Takeoff, Flight_Leg_Landing, 
+      Flight_Leg_Dep_UTC, Flight_Leg_Arr_UTC, Flight_Leg_Takeoff_UTC, 
+      Flight_Leg_Landing_UTC, Flight_Number, Landings_Day, 
+      Landings_Night, Takeoffs_Day, Takeoffs_Night, 
+      Flight_Time_PIC, Flight_Time_FO, Flight_Time_Night, 
+      Signature, Remarks
+      )
+    values (#{pilotId,jdbcType=INTEGER}, #{flightDate,jdbcType=DATE}, 
+      #{typeOfAircraft,jdbcType=VARCHAR}, #{registeredNumber,jdbcType=VARCHAR}, #{flightLegFrom,jdbcType=VARCHAR}, 
+      #{flightLegTo,jdbcType=VARCHAR}, #{flightLegDep,jdbcType=TIMESTAMP}, #{flightLegArr,jdbcType=TIMESTAMP}, 
+      #{flightLegTakeoff,jdbcType=TIMESTAMP}, #{flightLegLanding,jdbcType=TIMESTAMP}, 
+      #{flightLegDepUtc,jdbcType=TIMESTAMP}, #{flightLegArrUtc,jdbcType=TIMESTAMP}, #{flightLegTakeoffUtc,jdbcType=TIMESTAMP}, 
+      #{flightLegLandingUtc,jdbcType=TIMESTAMP}, #{flightNumber,jdbcType=VARCHAR}, #{landingsDay,jdbcType=INTEGER}, 
+      #{landingsNight,jdbcType=INTEGER}, #{takeoffsDay,jdbcType=INTEGER}, #{takeoffsNight,jdbcType=INTEGER}, 
+      #{flightTimePic,jdbcType=VARCHAR}, #{flightTimeFo,jdbcType=VARCHAR}, #{flightTimeNight,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}}
+      )
+  </insert>
   <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Routineflight">
     update RoutineFlight
     set Pilot_ID = #{pilotId,jdbcType=INTEGER},
@@ -101,4 +123,15 @@
     Flight_Time_FO, Flight_Time_Night, Signature, Remarks, Create_Time
     from RoutineFlight
   </select>
+  
+  <select id="selectByPilotID" resultMap="BaseResultMap">
+    select id, Pilot_ID, Flight_Date, Type_Of_Aircraft, Registered_Number, Flight_Leg_From, 
+    Flight_Leg_To, Flight_Leg_Dep, Flight_Leg_Arr, Flight_Leg_Takeoff, Flight_Leg_Landing, 
+    Flight_Leg_Dep_UTC, Flight_Leg_Arr_UTC, Flight_Leg_Takeoff_UTC, Flight_Leg_Landing_UTC, 
+    Flight_Number, Landings_Day, Landings_Night, Takeoffs_Day, Takeoffs_Night, Flight_Time_PIC, 
+    Flight_Time_FO, Flight_Time_Night, Signature, Remarks, Create_Time
+    from RoutineFlight
+    where Pilot_ID = #{Pilot_ID,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

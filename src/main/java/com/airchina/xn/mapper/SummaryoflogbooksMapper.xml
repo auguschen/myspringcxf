@@ -100,7 +100,7 @@
     Training_Takeoffs_Day, Training_Takeoffs_Night, Training_Time_Giving, Training_Time_Receiving, 
     Training_Time_Night, Create_Time
     from SummaryOfLogbooks
-    where Pilot_ID = #{Pilot_ID, jdbcType=Integer}
+    where Pilot_ID = #{Pilot_ID, jdbcType=INTEGER}
   </select>
   
 </mapper>
