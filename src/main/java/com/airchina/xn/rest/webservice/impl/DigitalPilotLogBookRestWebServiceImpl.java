@@ -251,6 +251,16 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 		return summaryoflogbooksservice.updateSummaryofLogBooks(pilot_id, summaryoflogbooksList);
 	}
 
+	@Override
+	@DELETE
+	@Path("/solb/del/{pilot_id}")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
+	public SummaryoflogbooksResp deletesummaryoflogbooks(Integer pilot_id,
+			List<Summaryoflogbooks> summaryoflogbooksList) {
+		return summaryoflogbooksservice.deleteSummaryofLogBooks(pilot_id, summaryoflogbooksList);
+	}
+
 //	日常飞行
 	@Override
 	@GET

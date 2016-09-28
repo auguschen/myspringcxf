@@ -70,6 +70,8 @@ public interface DigitalPilotLogBookRestWebService {
 	public SummaryoflogbooksResp newsummaryoflogbooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
 //	更新一个飞行员的经验累计
 	public SummaryoflogbooksResp updatesummaryoflogbooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
+//	删除一个飞行员的经验累计
+	public SummaryoflogbooksResp deletesummaryoflogbooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
 
 	/**
 	 * 

@@ -12,4 +12,6 @@ public interface SummaryOfLogBooksService {
 	SummaryoflogbooksResp newSummaryofLogBooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
 	
 	SummaryoflogbooksResp updateSummaryofLogBooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
+
+	SummaryoflogbooksResp deleteSummaryofLogBooks(Integer pilot_id, List<Summaryoflogbooks> summaryoflogbooksList);
 }

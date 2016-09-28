@@ -89,4 +89,35 @@ public class SummaryOfLogBooksServiceImpl implements SummaryOfLogBooksService {
 		return res;
 	}
 
+	@Override
+	public SummaryoflogbooksResp deleteSummaryofLogBooks(Integer pilot_id,
+			List<Summaryoflogbooks> summaryoflogbooksList) {
+		SummaryoflogbooksResp res = new SummaryoflogbooksResp();
+		res.setReturnCode(0);
+		Messages returnMessage = new Messages();
+		List<String> messages = new ArrayList<String>();
+		List<Boolean> iserror = new ArrayList<Boolean>();
+		for(Summaryoflogbooks solb:summaryoflogbooksList){
+			if(pilot_id.equals(solb.getPilotId())){
+				try {
+					Integer re = summaryoflogbooksmapper.deleteByPrimaryKey(solb.getId());
+					messages.add("effcet record " + re.toString());		
+					iserror.add(false);
+				} catch (Exception e) {
+					iserror.add(true);
+					messages.add(e.getMessage());			
+				}
+			}else{
+				iserror.add(true);
+				messages.add("pilot_id not equal");							
+			}
+		}
+		returnMessage.setMessages(messages);
+		returnMessage.setIsError(iserror);
+		res.setReturnMessage(returnMessage);
+		res.setIsSuccessful(true);
+		res.setSummaryoflogbooks(summaryoflogbooksList);
+		return res;
+	}
+
 }
