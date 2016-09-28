@@ -256,7 +256,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/solb/del/{pilot_id}")
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public SummaryoflogbooksResp deletesummaryoflogbooks(Integer pilot_id,
+	public SummaryoflogbooksResp deletesummaryoflogbooks(@PathParam("pilot_id") Integer pilot_id,
 			List<Summaryoflogbooks> summaryoflogbooksList) {
 		return summaryoflogbooksservice.deleteSummaryofLogBooks(pilot_id, summaryoflogbooksList);
 	}
