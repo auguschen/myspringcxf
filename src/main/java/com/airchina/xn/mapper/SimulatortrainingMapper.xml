@@ -41,6 +41,22 @@
       #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
+   
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Simulatortraining" useGeneratedKeys="true" keyProperty="id">
+    insert into SimulatorTraining (Pilot_ID, Flight_Date, 
+      Type_Of_Aircraft, Cert_No, Level_Of_Simulator, 
+      FTO, Type_of_Training_or_Check, Training_Time_From, 
+      Training_Time_To, Training_Time_Time, Landings_Day, 
+      Landings_Night, Takeoffs_Day, Takeoffs_Night, 
+      Signature, Remarks)
+    values (#{pilotId,jdbcType=INTEGER}, #{flightDate,jdbcType=DATE}, 
+      #{typeOfAircraft,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, #{levelOfSimulator,jdbcType=VARCHAR}, 
+      #{fto,jdbcType=VARCHAR}, #{typeOfTrainingOrCheck,jdbcType=VARCHAR}, #{trainingTimeFrom,jdbcType=VARCHAR}, 
+      #{trainingTimeTo,jdbcType=VARCHAR}, #{trainingTimeTime,jdbcType=VARCHAR}, #{landingsDay,jdbcType=INTEGER}, 
+      #{landingsNight,jdbcType=INTEGER}, #{takeoffsDay,jdbcType=INTEGER}, #{takeoffsNight,jdbcType=INTEGER}, 
+      #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Simulatortraining">
     update SimulatorTraining
     set Pilot_ID = #{pilotId,jdbcType=INTEGER},
@@ -75,4 +91,13 @@
     Landings_Day, Landings_Night, Takeoffs_Day, Takeoffs_Night, Signature, Remarks, Create_Time
     from SimulatorTraining
   </select>
+  
+  <select id="selectByPilotID" resultMap="BaseResultMap">
+    select id, Pilot_ID, Flight_Date, Type_Of_Aircraft, Cert_No, Level_Of_Simulator, 
+    FTO, Type_of_Training_or_Check, Training_Time_From, Training_Time_To, Training_Time_Time, 
+    Landings_Day, Landings_Night, Takeoffs_Day, Takeoffs_Night, Signature, Remarks, Create_Time
+    from SimulatorTraining
+    where Pilot_ID = #{Pilot_ID,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

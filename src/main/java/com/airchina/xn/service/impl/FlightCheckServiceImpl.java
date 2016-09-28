@@ -6,42 +6,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.airchina.xn.dao.RoutineflightMapper;
+import com.airchina.xn.dao.FlightcheckMapper;
+import com.airchina.xn.entities.FlightCheckResp;
 import com.airchina.xn.entities.Messages;
-import com.airchina.xn.entities.RoutineFlightResp;
-import com.airchina.xn.model.Routineflight;
-import com.airchina.xn.service.RoutineFlightService;
+import com.airchina.xn.model.Flightcheck;
+import com.airchina.xn.service.FlightCheckService;
 
-@Service("routineflightService")
-public class RoutineFlightServiceImpl implements RoutineFlightService {
-
-	@Autowired
-	private RoutineflightMapper routineflightmapper; 
+@Service("flightcheckService")
+public class FlightCheckServiceImpl implements FlightCheckService {
 	
-	public RoutineflightMapper getRoutineflightmapper() {
-		return routineflightmapper;
+	@Autowired
+	private FlightcheckMapper flightcheckmapper;
+	
+
+	public FlightcheckMapper getFlightcheckmapper() {
+		return flightcheckmapper;
 	}
 
-	public void setRoutineflightmapper(RoutineflightMapper routineflightmapper) {
-		this.routineflightmapper = routineflightmapper;
+	public void setFlightcheckmapper(FlightcheckMapper flightcheckmapper) {
+		this.flightcheckmapper = flightcheckmapper;
 	}
 
 	@Override
-	public List<Routineflight> getRoutineFlightByPilotID(Integer pilot_id) {
-		return routineflightmapper.selectByPilotID(pilot_id);
+	public List<Flightcheck> getFlightCheckByPilotID(Integer pilot_id) {
+		return flightcheckmapper.selectByPilotID(pilot_id);
 	}
 
 	@Override
-	public RoutineFlightResp newRoutineFlight(Integer pilot_id, List<Routineflight> routineflgihtList) {
-		RoutineFlightResp res = new RoutineFlightResp();
+	public FlightCheckResp newFlightCheck(Integer pilot_id, List<Flightcheck> flightcheckList) {
+		FlightCheckResp res = new FlightCheckResp();
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
 		List<Boolean> iserror = new ArrayList<Boolean>();
-		for(Routineflight rf:routineflgihtList){
-			rf.setPilotId(pilot_id);
+		for(Flightcheck fc:flightcheckList){
+			fc.setPilotId(pilot_id);
 			try {
-				Integer re = routineflightmapper.insertWithoutID(rf);
+				Integer re = flightcheckmapper.insertWithoutID(fc);
 				messages.add("effcet record " + re.toString());		
 				iserror.add(false);
 			} catch (Exception e) {
@@ -53,21 +54,21 @@ public class RoutineFlightServiceImpl implements RoutineFlightService {
 		returnMessage.setIsError(iserror);
 		res.setReturnMessage(returnMessage);
 		res.setIsSuccessful(true);
-		res.setRoutineflights(routineflgihtList);
+		res.setFlightchecks(flightcheckList);
 		return res;
 	}
 
 	@Override
-	public RoutineFlightResp updateRoutineFlight(Integer pilot_id, List<Routineflight> routineflgihtList) {
-		RoutineFlightResp res = new RoutineFlightResp();
+	public FlightCheckResp updateFlightCheck(Integer pilot_id, List<Flightcheck> flightcheckList) {
+		FlightCheckResp res = new FlightCheckResp();
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
 		List<Boolean> iserror = new ArrayList<Boolean>();
-		for(Routineflight rf:routineflgihtList){
-			if(pilot_id.equals(rf.getPilotId())){
+		for(Flightcheck fc:flightcheckList){
+			if(pilot_id.equals(fc.getPilotId())){
 				try {
-					Integer re = routineflightmapper.updateByPrimaryKey(rf);
+					Integer re = flightcheckmapper.updateByPrimaryKey(fc);
 					messages.add("effcet record " + re.toString());		
 					iserror.add(false);
 				} catch (Exception e) {
@@ -83,21 +84,21 @@ public class RoutineFlightServiceImpl implements RoutineFlightService {
 		returnMessage.setIsError(iserror);
 		res.setReturnMessage(returnMessage);
 		res.setIsSuccessful(true);
-		res.setRoutineflights(routineflgihtList);
+		res.setFlightchecks(flightcheckList);
 		return res;
 	}
 
 	@Override
-	public RoutineFlightResp deleteRoutineFlight(Integer pilot_id, List<Routineflight> routineflgihtList) {
-		RoutineFlightResp res = new RoutineFlightResp();
+	public FlightCheckResp deleteFlightCheck(Integer pilot_id, List<Flightcheck> flightcheckList) {
+		FlightCheckResp res = new FlightCheckResp();
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
 		List<Boolean> iserror = new ArrayList<Boolean>();
-		for(Routineflight rf:routineflgihtList){
-			if(pilot_id.equals(rf.getPilotId())){
+		for(Flightcheck fc:flightcheckList){
+			if(pilot_id.equals(fc.getPilotId())){
 				try {
-					Integer re = routineflightmapper.updateByPrimaryKey(rf);
+					Integer re = flightcheckmapper.updateByPrimaryKey(fc);
 					messages.add("effcet record " + re.toString());		
 					iserror.add(false);
 				} catch (Exception e) {
@@ -113,7 +114,7 @@ public class RoutineFlightServiceImpl implements RoutineFlightService {
 		returnMessage.setIsError(iserror);
 		res.setReturnMessage(returnMessage);
 		res.setIsSuccessful(true);
-		res.setRoutineflights(routineflgihtList);
+		res.setFlightchecks(flightcheckList);
 		return res;
 	}
 

@@ -27,6 +27,16 @@
       #{examiner,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
+  
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Flightcheck" useGeneratedKeys="true" keyProperty="id">
+    insert into FlightCheck (Pilot_ID, FlightCheck_Date, 
+      Type_Of_Aircraft, Type_Of_Check, Conclusion, 
+      Examiner, Signature, Remarks)
+    values (#{pilotId,jdbcType=INTEGER}, #{flightcheckDate,jdbcType=DATE}, 
+      #{typeOfAircraft,jdbcType=VARCHAR}, #{typeOfCheck,jdbcType=VARCHAR}, #{conclusion,jdbcType=VARCHAR}, 
+      #{examiner,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  
   <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Flightcheck">
     update FlightCheck
     set Pilot_ID = #{pilotId,jdbcType=INTEGER},
@@ -51,4 +61,12 @@
     Examiner, Signature, Remarks, Create_Time
     from FlightCheck
   </select>
+  
+  <select id="selectByPilotID" resultMap="BaseResultMap">
+    select id, Pilot_ID, FlightCheck_Date, Type_Of_Aircraft, Type_Of_Check, Conclusion, 
+    Examiner, Signature, Remarks, Create_Time
+    from FlightCheck
+    where Pilot_ID = #{Pilot_ID,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

@@ -29,9 +29,12 @@ import com.airchina.xn.model.Routineflight;
 import com.airchina.xn.model.Simulatortraining;
 import com.airchina.xn.model.Summaryoflogbooks;
 import com.airchina.xn.rest.webservice.DigitalPilotLogBookRestWebService;
+import com.airchina.xn.service.FlightCheckService;
+import com.airchina.xn.service.FlightTrainingService;
 import com.airchina.xn.service.LicensesRatingService;
 import com.airchina.xn.service.PilotService;
 import com.airchina.xn.service.RoutineFlightService;
+import com.airchina.xn.service.SimulatorTrainingService;
 import com.airchina.xn.service.SummaryOfLogBooksService;
 
 @Service("DigitalPilotLogBookRestWebService")
@@ -50,7 +53,40 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Autowired
 	private RoutineFlightService routineflightservice;
 	
+	@Autowired
+	private FlightCheckService flightcheckservice;
+	
+	@Autowired
+	private FlightTrainingService flighttraningservice;
+	
+	@Autowired
+	private SimulatorTrainingService simulatortrainingservice;
+	
 		
+	public SimulatorTrainingService getSimulatortrainingservice() {
+		return simulatortrainingservice;
+	}
+
+	public void setSimulatortrainingservice(SimulatorTrainingService simulatortrainingservice) {
+		this.simulatortrainingservice = simulatortrainingservice;
+	}
+
+	public FlightTrainingService getFlighttraningservice() {
+		return flighttraningservice;
+	}
+
+	public void setFlighttraningservice(FlightTrainingService flighttraningservice) {
+		this.flighttraningservice = flighttraningservice;
+	}
+
+	public FlightCheckService getFlightcheckservice() {
+		return flightcheckservice;
+	}
+
+	public void setFlightcheckservice(FlightCheckService flightcheckservice) {
+		this.flightcheckservice = flightcheckservice;
+	}
+
 	public RoutineFlightService getRoutineflightservice() {
 		return routineflightservice;
 	}
@@ -257,8 +293,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/t/get/{pilot_id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Flighttraining> flightTrainingbyPilotid(@PathParam("pilot_id") Integer pilot_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return flighttraningservice.getFlightTrainingByPilotID(pilot_id);
 	}
 
 	@Override
@@ -267,8 +302,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FlightTrainingResp newFlightraining(@PathParam("pilot_id") Integer pilot_id, List<Flighttraining> flighttrainingList) {
-		// TODO Auto-generated method stub
-		return null;
+		return flighttraningservice.newFlightTraining(pilot_id, flighttrainingList);
 	}
 
 	@Override
@@ -277,8 +311,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FlightTrainingResp updateFlightraining(@PathParam("pilot_id") Integer pilot_id, List<Flighttraining> flighttrainingList) {
-		// TODO Auto-generated method stub
-		return null;
+		return flighttraningservice.updateFlightTraining(pilot_id, flighttrainingList);
 	}
 
 	@Override
@@ -287,8 +320,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FlightTrainingResp deleteFlightraining(@PathParam("pilot_id") Integer pilot_id, List<Flighttraining> flighttrainingList) {
-		// TODO Auto-generated method stub
-		return null;
+		return flighttraningservice.deleteFlightTraining(pilot_id, flighttrainingList);
 	}
 
 //	飞行检查
@@ -297,8 +329,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/c/get/{pilot_id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Flightcheck> flightCheckbyPilotid(@PathParam("pilot_id") Integer pilot_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return flightcheckservice.getFlightCheckByPilotID(pilot_id);
 	}
 
 	@Override
@@ -307,8 +338,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FlightCheckResp newFlightcheck(@PathParam("pilot_id") Integer pilot_id, List<Flightcheck> flightcheckList) {
-		// TODO Auto-generated method stub
-		return null;
+		return flightcheckservice.newFlightCheck(pilot_id, flightcheckList);
 	}
 
 	@Override
@@ -317,8 +347,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FlightCheckResp updateFlightcheck(@PathParam("pilot_id") Integer pilot_id, List<Flightcheck> flightcheckList) {
-		// TODO Auto-generated method stub
-		return null;
+		return flightcheckservice.updateFlightCheck(pilot_id, flightcheckList);
 	}
 
 	@Override
@@ -327,8 +356,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FlightCheckResp deleteFlightcheck(@PathParam("pilot_id") Integer pilot_id, List<Flightcheck> flightcheckList) {
-		// TODO Auto-generated method stub
-		return null;
+		return flightcheckservice.deleteFlightCheck(pilot_id, flightcheckList);
 	}
 
 //	模拟机训练
@@ -337,8 +365,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Path("/s/get/{pilot_id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Simulatortraining> simulatorTrainingbyPilotid(@PathParam("pilot_id") Integer pilot_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return simulatortrainingservice.getSimulatorTrainingByPilotID(pilot_id);
 	}
 
 	@Override
@@ -347,8 +374,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public SimulatorTrainingResp newSimulatortraining(@PathParam("pilot_id") Integer pilot_id, List<Simulatortraining> simulatortrainingList) {
-		// TODO Auto-generated method stub
-		return null;
+		return simulatortrainingservice.newSimulatorTraining(pilot_id, simulatortrainingList);
 	}
 
 	@Override
@@ -357,8 +383,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public SimulatorTrainingResp updateSimulatortraining(@PathParam("pilot_id") Integer pilot_id, List<Simulatortraining> simulatortrainingList) {
-		// TODO Auto-generated method stub
-		return null;
+		return simulatortrainingservice.updateSimulatorTraining(pilot_id, simulatortrainingList);
 	}
 
 	@Override
@@ -367,8 +392,7 @@ public class DigitalPilotLogBookRestWebServiceImpl implements DigitalPilotLogBoo
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public SimulatorTrainingResp deleteSimulatortraining(@PathParam("pilot_id") Integer pilot_id, List<Simulatortraining> simulatortrainingList) {
-		// TODO Auto-generated method stub
-		return null;
+		return simulatortrainingservice.deleteSimulatorTraining(pilot_id, simulatortrainingList);
 	}
 
 }

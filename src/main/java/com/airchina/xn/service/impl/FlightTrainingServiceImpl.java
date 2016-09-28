@@ -6,42 +6,42 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.airchina.xn.dao.RoutineflightMapper;
+import com.airchina.xn.dao.FlighttrainingMapper;
+import com.airchina.xn.entities.FlightTrainingResp;
 import com.airchina.xn.entities.Messages;
-import com.airchina.xn.entities.RoutineFlightResp;
-import com.airchina.xn.model.Routineflight;
-import com.airchina.xn.service.RoutineFlightService;
+import com.airchina.xn.model.Flighttraining;
+import com.airchina.xn.service.FlightTrainingService;
 
-@Service("routineflightService")
-public class RoutineFlightServiceImpl implements RoutineFlightService {
+@Service("flighttrainingService")
+public class FlightTrainingServiceImpl implements FlightTrainingService {
 
 	@Autowired
-	private RoutineflightMapper routineflightmapper; 
+	private FlighttrainingMapper flighttrainingmapper;
 	
-	public RoutineflightMapper getRoutineflightmapper() {
-		return routineflightmapper;
+	public FlighttrainingMapper getFlighttrainingmapper() {
+		return flighttrainingmapper;
 	}
 
-	public void setRoutineflightmapper(RoutineflightMapper routineflightmapper) {
-		this.routineflightmapper = routineflightmapper;
-	}
-
-	@Override
-	public List<Routineflight> getRoutineFlightByPilotID(Integer pilot_id) {
-		return routineflightmapper.selectByPilotID(pilot_id);
+	public void setFlighttrainingmapper(FlighttrainingMapper flighttrainingmapper) {
+		this.flighttrainingmapper = flighttrainingmapper;
 	}
 
 	@Override
-	public RoutineFlightResp newRoutineFlight(Integer pilot_id, List<Routineflight> routineflgihtList) {
-		RoutineFlightResp res = new RoutineFlightResp();
+	public List<Flighttraining> getFlightTrainingByPilotID(Integer pilot_id) {
+		return flighttrainingmapper.selectByPilotID(pilot_id);
+	}
+
+	@Override
+	public FlightTrainingResp newFlightTraining(Integer pilot_id, List<Flighttraining> flighttrainingList) {
+		FlightTrainingResp res = new FlightTrainingResp();
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
 		List<Boolean> iserror = new ArrayList<Boolean>();
-		for(Routineflight rf:routineflgihtList){
-			rf.setPilotId(pilot_id);
+		for(Flighttraining ft:flighttrainingList){
+			ft.setPilotId(pilot_id);
 			try {
-				Integer re = routineflightmapper.insertWithoutID(rf);
+				Integer re = flighttrainingmapper.insertWithoutID(ft);
 				messages.add("effcet record " + re.toString());		
 				iserror.add(false);
 			} catch (Exception e) {
@@ -53,21 +53,21 @@ public class RoutineFlightServiceImpl implements RoutineFlightService {
 		returnMessage.setIsError(iserror);
 		res.setReturnMessage(returnMessage);
 		res.setIsSuccessful(true);
-		res.setRoutineflights(routineflgihtList);
+		res.setFlighttrainings(flighttrainingList);
 		return res;
 	}
 
 	@Override
-	public RoutineFlightResp updateRoutineFlight(Integer pilot_id, List<Routineflight> routineflgihtList) {
-		RoutineFlightResp res = new RoutineFlightResp();
+	public FlightTrainingResp updateFlightTraining(Integer pilot_id, List<Flighttraining> flighttrainingList) {
+		FlightTrainingResp res = new FlightTrainingResp();
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
 		List<Boolean> iserror = new ArrayList<Boolean>();
-		for(Routineflight rf:routineflgihtList){
-			if(pilot_id.equals(rf.getPilotId())){
+		for(Flighttraining ft:flighttrainingList){
+			if(pilot_id.equals(ft.getPilotId())){
 				try {
-					Integer re = routineflightmapper.updateByPrimaryKey(rf);
+					Integer re = flighttrainingmapper.updateByPrimaryKey(ft);
 					messages.add("effcet record " + re.toString());		
 					iserror.add(false);
 				} catch (Exception e) {
@@ -83,21 +83,21 @@ public class RoutineFlightServiceImpl implements RoutineFlightService {
 		returnMessage.setIsError(iserror);
 		res.setReturnMessage(returnMessage);
 		res.setIsSuccessful(true);
-		res.setRoutineflights(routineflgihtList);
+		res.setFlighttrainings(flighttrainingList);
 		return res;
 	}
 
 	@Override
-	public RoutineFlightResp deleteRoutineFlight(Integer pilot_id, List<Routineflight> routineflgihtList) {
-		RoutineFlightResp res = new RoutineFlightResp();
+	public FlightTrainingResp deleteFlightTraining(Integer pilot_id, List<Flighttraining> flighttrainingList) {
+		FlightTrainingResp res = new FlightTrainingResp();
 		res.setReturnCode(0);
 		Messages returnMessage = new Messages();
 		List<String> messages = new ArrayList<String>();
 		List<Boolean> iserror = new ArrayList<Boolean>();
-		for(Routineflight rf:routineflgihtList){
-			if(pilot_id.equals(rf.getPilotId())){
+		for(Flighttraining ft:flighttrainingList){
+			if(pilot_id.equals(ft.getPilotId())){
 				try {
-					Integer re = routineflightmapper.updateByPrimaryKey(rf);
+					Integer re = flighttrainingmapper.updateByPrimaryKey(ft);
 					messages.add("effcet record " + re.toString());		
 					iserror.add(false);
 				} catch (Exception e) {
@@ -113,7 +113,7 @@ public class RoutineFlightServiceImpl implements RoutineFlightService {
 		returnMessage.setIsError(iserror);
 		res.setReturnMessage(returnMessage);
 		res.setIsSuccessful(true);
-		res.setRoutineflights(routineflgihtList);
+		res.setFlighttrainings(flighttrainingList);
 		return res;
 	}
 

@@ -55,6 +55,26 @@
       #{timeOfNight,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
+  <insert id="insertWithoutID" parameterType="com.airchina.xn.model.Flighttraining" useGeneratedKeys="true" keyProperty="id">
+    insert into FlightTraining (Pilot_ID, Flight_Date, 
+      Type_Of_Aircraft, Registered_Number, Flight_Leg_From, 
+      Flight_Leg_To, Flight_Leg_Dep, Flight_Leg_Arr, 
+      Flight_Leg_Takeoff, Flight_Leg_Landing, 
+      Flight_Leg_Dep_UTC, Flight_Leg_Arr_UTC, Flight_Leg_Takeoff_UTC, 
+      Flight_Leg_Landing_UTC, Type_Of_Training, 
+      Landings_Day, Landings_Night, Takeoffs_Day, 
+      Takeoffs_Night, Time_Of_Giving, Time_Of_Receiving, 
+      Time_Of_Night, Signature, Remarks)
+    values (#{pilotId,jdbcType=INTEGER}, #{flightDate,jdbcType=DATE}, 
+      #{typeOfAircraft,jdbcType=VARCHAR}, #{registeredNumber,jdbcType=VARCHAR}, #{flightLegFrom,jdbcType=VARCHAR}, 
+      #{flightLegTo,jdbcType=VARCHAR}, #{flightLegDep,jdbcType=TIMESTAMP}, #{flightLegArr,jdbcType=TIMESTAMP}, 
+      #{flightLegTakeoff,jdbcType=TIMESTAMP}, #{flightLegLanding,jdbcType=TIMESTAMP}, 
+      #{flightLegDepUtc,jdbcType=TIMESTAMP}, #{flightLegArrUtc,jdbcType=TIMESTAMP}, #{flightLegTakeoffUtc,jdbcType=TIMESTAMP}, 
+      #{flightLegLandingUtc,jdbcType=TIMESTAMP}, #{typeOfTraining,jdbcType=VARCHAR}, 
+      #{landingsDay,jdbcType=INTEGER}, #{landingsNight,jdbcType=INTEGER}, #{takeoffsDay,jdbcType=INTEGER}, 
+      #{takeoffsNight,jdbcType=INTEGER}, #{timeOfGiving,jdbcType=VARCHAR}, #{timeOfReceiving,jdbcType=VARCHAR}, 
+      #{timeOfNight,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
   <update id="updateByPrimaryKey" parameterType="com.airchina.xn.model.Flighttraining">
     update FlightTraining
     set Pilot_ID = #{pilotId,jdbcType=INTEGER},
@@ -101,4 +121,16 @@
     Time_Of_Receiving, Time_Of_Night, Signature, Remarks, Create_Time
     from FlightTraining
   </select>
+  
+  
+  <select id="selectByPilotID" resultMap="BaseResultMap">
+    select id, Pilot_ID, Flight_Date, Type_Of_Aircraft, Registered_Number, Flight_Leg_From, 
+    Flight_Leg_To, Flight_Leg_Dep, Flight_Leg_Arr, Flight_Leg_Takeoff, Flight_Leg_Landing, 
+    Flight_Leg_Dep_UTC, Flight_Leg_Arr_UTC, Flight_Leg_Takeoff_UTC, Flight_Leg_Landing_UTC, 
+    Type_Of_Training, Landings_Day, Landings_Night, Takeoffs_Day, Takeoffs_Night, Time_Of_Giving, 
+    Time_Of_Receiving, Time_Of_Night, Signature, Remarks, Create_Time
+    from FlightTraining
+    where Pilot_ID = #{Pilot_ID,jdbcType=INTEGER}
+  </select>
+  
 </mapper>
